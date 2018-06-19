@@ -1,2 +1,2 @@
 # pystormon
-Storage Monitoring through CIM/WBEM
+Zabbix Storage Monitoring through CIM/WBEM
