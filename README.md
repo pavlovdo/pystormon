@@ -1,6 +1,7 @@
 Description
 ===========
 Zabbix Storage Monitoring through CIM/WBEM
+Tested with IBM Storwize
 
 
 Requirements
