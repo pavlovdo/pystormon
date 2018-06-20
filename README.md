@@ -19,9 +19,20 @@ zabbix-sender (tested with version 3.4)
 
 Installation
 ============
-1) Import Template Storage Pystormon.xml 
+1) Locate Python-scripts and configuration files in directory on server with access to storage management network
 
-2) Create cron jobs:
+2) Install requirements
+
+3) Give access to storage statistic and parameters for monitoring user
+
+4) Tune statistic collection interval. For collect statistic every minute from IBM Storwize:
+
+startstats -interval 1
+
+5) Import Template Storage Pystormon.xml to Zabbix and link template with storage objects in Zabbix
+
+6) Create cron jobs:
+
 echo "\* \*/1 \* \* \*  /usr/local/orbit/pystormon/storage_discovery.py" > /tmp/crontab && \
 
 echo "\*/1 \* \* \* \*   /usr/local/orbit/pystormon/storage_perfomance.py" >> /tmp/crontab && \
