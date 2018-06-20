@@ -19,22 +19,22 @@ zabbix-sender (tested with version 3.4) - for sending traps to zabbix
 
 Installation
 ============
-1) Locate Python-scripts and configuration files in directory on server with access to storage management network
-
-2) Install requirements
-
-3) Give access to storage statistic and parameters for monitoring user. For collect statistic under user zabbix from IBM Storwize:
+1) Give access to storage statistic and parameters for monitoring user. For collect statistic under user zabbix from IBM Storwize:
 ```
 chuser -usergrp 5 zabbix
 ```
 
-4) Tune statistic collection interval. For collect statistic every minute from IBM Storwize:
+2) Tune statistic collection interval. For collect statistic every minute from IBM Storwize:
 
 ```
 startstats -interval 1
 ```
 
-5) Import Template Storage Pystormon.xml to Zabbix and link template with storage objects in Zabbix
+3) Import Template Storage Pystormon.xml to Zabbix and link template with storage objects in Zabbix
+
+4) Locate Python-scripts and configuration files in directory on server with access to storage management network
+
+5) Install requirements
 
 6) Create cron jobs for zabbix trappers:
 ```
