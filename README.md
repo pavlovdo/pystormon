@@ -5,6 +5,7 @@ Zabbix Storage Monitoring through CIM/WBEM
 Requirements
 ================
 pywbem >= 0.12.0
+
 py-zabbix
 
 Related Links
