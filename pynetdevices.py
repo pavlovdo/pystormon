@@ -27,7 +27,7 @@ class WBEMDevice(NetworkDevice):
             conn = pywbem.WBEMConnection(server_uri, (self.login, self.password),
                                          namespace, no_verification=True)
         except:
-        print ('Unexpected exception in \"ZabbixSender(' + nd_parameters['zabbix_server'] +
+            print ('Unexpected exception in \"ZabbixSender(' + nd_parameters['zabbix_server'] +
                ').send(packet)\": '+ str(sys.exc_info()))
 
         return conn
