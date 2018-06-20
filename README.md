@@ -8,13 +8,13 @@ Requirements
 
 python >= 3.4
 
-python module py-zabbix
+python module py-zabbix - for sending traps to zabbix
 
-python module pywbem (tested with version 0.12.0)
+python module pywbem (tested with version 0.12.0) - for connect and get information from storage through CIM/WBEM
 
 zabbix-server (tested with version 3.4)
 
-zabbix-sender (tested with version 3.4)
+zabbix-sender (tested with version 3.4) - for sending traps to zabbix
 
 
 Installation
@@ -36,11 +36,11 @@ startstats -interval 1
 
 5) Import Template Storage Pystormon.xml to Zabbix and link template with storage objects in Zabbix
 
-6) Create cron jobs:
+6) Create cron jobs for zabbix trappers:
 ```
-echo "\* \*/1 \* \* \*  /usr/local/orbit/pystormon/storage_discovery.py" > /tmp/crontab && \
-echo "\*/1 \* \* \* \*   /usr/local/orbit/pystormon/storage_perfomance.py" >> /tmp/crontab && \
-echo "\*/5 \* \* \* \*   /usr/local/orbit/pystormon/storage_status.py" >> /tmp/crontab && \
+echo "* */1 * * *  /usr/local/orbit/pystormon/storage_discovery.py" > /tmp/crontab && \
+echo "*/1 * * * *   /usr/local/orbit/pystormon/storage_perfomance.py" >> /tmp/crontab && \
+echo "*/5 * * * *   /usr/local/orbit/pystormon/storage_status.py" >> /tmp/crontab && \
 crontab /tmp/crontab && rm /tmp/crontab
 ```
 
