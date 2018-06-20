@@ -1,10 +1,10 @@
 Description
-================
+===========
 Zabbix Storage Monitoring through CIM/WBEM
 
 
 Requirements
-================
+============
 
 python >= 3.4
 
@@ -18,18 +18,21 @@ zabbix-sender (tested with version 3.4)
 
 
 Installation
-================
+============
 1) Import Template Storage Pystormon.xml 
 
 2) Create cron jobs:
-echo "00 */1 * * *  /usr/local/orbit/pystormon/storage_discovery.py" > /tmp/crontab && \
-echo "*/1 * * * *   /usr/local/orbit/pystormon/storage_perfomance.py" >> /tmp/crontab && \
-echo "*/5 * * * *   /usr/local/orbit/pystormon/storage_status.py" >> /tmp/crontab && \
+echo "\* \*/1 \* \* \*  /usr/local/orbit/pystormon/storage_discovery.py" > /tmp/crontab && \
+
+echo "\*/1 \* \* \* \*   /usr/local/orbit/pystormon/storage_perfomance.py" >> /tmp/crontab && \
+
+echo "\*/5 \* \* \* \*   /usr/local/orbit/pystormon/storage_status.py" >> /tmp/crontab && \
+
 crontab /tmp/crontab && rm /tmp/crontab
 
 
 Related Links
-================
+=============
 http://pywbem.github.io/pywbem/
 
 https://github.com/adubkov/py-zabbix
