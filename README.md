@@ -23,24 +23,26 @@ Installation
 
 2) Install requirements
 
-3) Give access to storage statistic and parameters for monitoring user
+3) Give access to storage statistic and parameters for monitoring user. For collect statistic under user zabbix from IBM Storwize:
+```
+chuser -usergrp 5 zabbix
+```
 
 4) Tune statistic collection interval. For collect statistic every minute from IBM Storwize:
 
+```
 startstats -interval 1
+```
 
 5) Import Template Storage Pystormon.xml to Zabbix and link template with storage objects in Zabbix
 
 6) Create cron jobs:
-
+```
 echo "\* \*/1 \* \* \*  /usr/local/orbit/pystormon/storage_discovery.py" > /tmp/crontab && \
-
 echo "\*/1 \* \* \* \*   /usr/local/orbit/pystormon/storage_perfomance.py" >> /tmp/crontab && \
-
 echo "\*/5 \* \* \* \*   /usr/local/orbit/pystormon/storage_status.py" >> /tmp/crontab && \
-
 crontab /tmp/crontab && rm /tmp/crontab
-
+```
 
 Related Links
 =============
