@@ -40,7 +40,7 @@ startstats -interval 1
 
 6) Create cron jobs for zabbix trappers:
 ```
-echo "* */1 * * *  /usr/local/scripts/pystormon/storage_discovery.py" > /tmp/crontab && \
+echo "00 */1 * * *  /usr/local/scripts/pystormon/storage_discovery.py" > /tmp/crontab && \
 echo "*/1 * * * *   /usr/local/scripts/pystormon/storage_perfomance.py" >> /tmp/crontab && \
 echo "*/5 * * * *   /usr/local/scripts/pystormon/storage_status.py" >> /tmp/crontab && \
 crontab /tmp/crontab && rm /tmp/crontab
