@@ -16,8 +16,6 @@ python module pywbem (tested with version 0.12.0) - for connect and get informat
 
 zabbix-server (tested with version 3.4)
 
-zabbix-sender (tested with version 3.4) - for sending traps to zabbix
-
 
 Installation
 ============
@@ -32,17 +30,24 @@ chuser -usergrp 5 zabbix
 startstats -interval 1
 ```
 
-3) Import Template Storage Pystormon.xml to Zabbix and link template with storage objects in Zabbix
+3) Clone pystormon repo to directory /etc/zabbix/externalscripts of server with access to storage management network;
 
-4) Locate Python-scripts and configuration files in directory /etc/zabbix/externascripts/pystormon on server with access to storage management network
+4) Import Template Storage Pystormon.xml to Zabbix and link template with storage objects in Zabbix;
 
-5) Install requirements
+5) Change example configuration files;
 
-6) Create cron jobs for zabbix trappers:
+6) Install Python 3 and pip3 if it is not installed;
+
+7) Install required python modules:
 ```
-echo "00 */1 * * *  /usr/local/scripts/pystormon/storage_discovery.py" > /tmp/crontab && \
-echo "*/1 * * * *   /usr/local/scripts/pystormon/storage_perfomance.py" >> /tmp/crontab && \
-echo "*/5 * * * *   /usr/local/scripts/pystormon/storage_status.py" >> /tmp/crontab && \
+pip3 install -r requirements.txt
+```
+
+8) Create cron jobs for zabbix trappers:
+```
+echo "00 */1 * * *  /etc/zabbix/externalscripts/pystormon/storage_discovery.py" > /tmp/crontab && \
+echo "*/1 * * * *   /etc/zabbix/externalscripts/pystormon/storage_perfomance.py" >> /tmp/crontab && \
+echo "*/5 * * * *   /etc/zabbix/externalscripts/pystormon/storage_status.py" >> /tmp/crontab && \
 crontab /tmp/crontab && rm /tmp/crontab
 ```
 

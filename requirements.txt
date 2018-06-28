@@ -1,0 +1,2 @@
+py-zabbix>=1.1.3
+pywbem>=0.12.3
