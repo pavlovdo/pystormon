@@ -47,7 +47,7 @@ conf_file = ('/etc/zabbix/externalscripts/' + os.path.abspath(__file__).split('/
 
 # read parameters and save it to dict for connecting to storage and sending data to zabbix
 nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file', 'login', 'password',
-                           'name_space', 'zabbix_server', 'slack_hook')
+                           'name_space', 'zabbix_server')
 
 # open file with list of monitored storages
 device_list_file = open(nd_parameters['device_file'])
@@ -69,8 +69,7 @@ for device_line in device_list_file:
 
     # connect to storage via WBEM, get conn object
     if device_type == 'storwize':
-        device = WBEMDevice(device_name, device_ip, nd_parameters['slack_hook'],
-                            nd_parameters['login'],
+        device = WBEMDevice(device_name, device_ip, nd_parameters['login'],
                             nd_parameters['password'])
         namespace = nd_parameters.get('name_space', 'root/ibm')
         conn = device.Connect(namespace)

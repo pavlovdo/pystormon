@@ -3,7 +3,7 @@
 
 class NetworkDevice:
     """ base class for network devices """
-    def __init__(self, hostname, ip, slack_hook, login=None, password=None,
+    def __init__(self, hostname, ip, login=None, password=None,
                  enablepw=None):
 
         self.hostname = hostname
@@ -11,7 +11,6 @@ class NetworkDevice:
         self.login = login
         self.password = password
         self.enablepw = enablepw
-        self.slack_hook = slack_hook
 
 
 class WBEMDevice(NetworkDevice):
@@ -19,7 +18,6 @@ class WBEMDevice(NetworkDevice):
     def Connect(self, namespace='root/ibm', printing=False):
 
         import pywbem
-        from pyslack import slack_post
 
         server_uri = 'https://' + self.ip.rstrip()
 
