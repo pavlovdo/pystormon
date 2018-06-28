@@ -10,7 +10,7 @@ def configread(conffile, section, *parameters):
     config.read(conffile)
     params = dict()
 
-    # check presence parameters in config file
+    # check presence of parameters in config file
     for parameter in parameters:
         try:
             params[parameter] = config.get(section, parameter)

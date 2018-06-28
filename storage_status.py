@@ -42,7 +42,7 @@ def disks_get_params(wbem_connection, disk_table, disk_name_column, params_names
 
 
 # read parameters from config file
-conf_file = ('/etc/orbit/' + os.path.abspath(__file__).split('/')[-2] + '/'
+conf_file = ('/etc/zabbix/externalscripts/' + os.path.abspath(__file__).split('/')[-2] + '/'
              + os.path.abspath(__file__).split('/')[-2] + '.conf')
 
 # read parameters and save it to dict for connecting to storage and sending data to zabbix

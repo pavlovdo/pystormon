@@ -34,7 +34,7 @@ startstats -interval 1
 
 3) Import Template Storage Pystormon.xml to Zabbix and link template with storage objects in Zabbix
 
-4) Locate Python-scripts and configuration files in directory on server with access to storage management network
+4) Locate Python-scripts and configuration files in directory /etc/zabbix/externascripts/pystormon on server with access to storage management network
 
 5) Install requirements
 
