@@ -21,7 +21,7 @@ Installation
 ============
 1) Give access to storage statistic and parameters for monitoring user. For collect statistic under user zabbix from IBM Storwize:
 ```
-chuser -usergrp 5 zabbix
+chuser -usergrp RestrictedAdmin zabbix
 ```
 
 2) Tune statistic collection interval. For collect statistic every minute from IBM Storwize:
@@ -34,7 +34,7 @@ startstats -interval 1
 
 4) Import Template Storage Pystormon.xml to Zabbix and link template with storage objects in Zabbix;
 
-5) Change example configuration files;
+5) Change example configuration files: login, password, address of zabbix_server, IP and name of storage, etc.
 
 6) Install Python 3 and pip3 if it is not installed;
 
