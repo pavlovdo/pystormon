@@ -24,7 +24,10 @@ nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file', 'login', '
 # open file with list of monitored storages
 device_list_file = open(nd_parameters['device_file'])
 
-table = 'IBMTSSVC_StorageVolume'
+# dictionary of matching storwize concepts and cim properties
+# https://www.ibm.com/support/knowledgecenter/STHGUJ/com.ibm.storwize.v5000.710.doc/svc_conceptsmaptocimconcepts_3skacv.html
+storwize_cim = {'Array': 'IBMTSSVC_Array', 'DiskDrive': 'IBMTSSVC_DiskDrive',
+                'mdisk': 'IBMTSSVC_BackendVolume', 'VDisk': 'IBMTSSVC_StorageVolume' }
 
 # parse the storage list
 for device_line in device_list_file:
@@ -40,7 +43,11 @@ for device_line in device_list_file:
         namespace = nd_parameters.get('name_space', 'root/ibm')
         conn = device.Connect(namespace)
 
-        instances = conn.EnumerateInstances('IBMTSSVC_StorageVolume',namespace=nd_parameters['name_space'])
-        for instance in instances:
-            for prop_name, prop_value in instance.items():
-                print('  %s: %r' % (prop_name, prop_value))
+        # print all parameters for all instances (objects) for cim from storwize_cim
+        for storwize_concept in storwize_cim:
+            cim_name = storwize_cim[storwize_concept]
+            instances = conn.EnumerateInstances(cim_name,namespace=nd_parameters['name_space'])
+            print (storwize_concept)
+            for instance in instances:
+                for prop_name, prop_value in instance.items():
+                    print('  %s: %r' % (prop_name, prop_value))
