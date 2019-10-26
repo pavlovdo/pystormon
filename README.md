@@ -51,6 +51,11 @@ echo "*/5 * * * *   /etc/zabbix/externalscripts/pystormon/storage_status.py" >> 
 crontab /tmp/crontab && rm /tmp/crontab
 ```
 
+Tested
+======
+Storwize v3700, v5010, v5030, v7000
+
+
 Related Links
 =============
 http://pywbem.github.io/pywbem/
