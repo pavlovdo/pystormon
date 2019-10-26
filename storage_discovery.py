@@ -37,10 +37,10 @@ def disks_discovery(wbem_connection, table, name):
     return result
 
 
+# read parameters from config file
 conf_file = ('/etc/zabbix/externalscripts/' + os.path.abspath(__file__).split('/')[-2] + '/'
              + os.path.abspath(__file__).split('/')[-2] + '.conf')
 
-# read parameters of storage and zabbix from config file and save it to dict
 nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file', 'login', 'password',
                            'name_space', 'zabbix_server')
 
