@@ -14,7 +14,7 @@ python module py-zabbix - for sending traps to zabbix
 
 python module pywbem (tested with version 0.12.0) - for connect and get information from storage through CIM/WBEM
 
-zabbix-server (tested with version 3.4)
+zabbix-server (tested with versions 3.4-4.4)
 
 
 Installation
