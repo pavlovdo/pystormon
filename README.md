@@ -61,6 +61,9 @@ crontab /tmp/crontab && rm /tmp/crontab
 ```
 
 12) Optionally, you can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
+and in Template Storage Pystormon.xml. Storage CIM classes maps to Zabbix discoveries, and CIM class properties maps 
+to Zabbix discoveries items.
+
 
 
 Tested
