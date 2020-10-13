@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 #
-# IBM Storwize CIM print
+# IBM Storwize CIM classes and properties print
 #
 # 2019 Denis Pavlov
 #
-# Print CIM properties of Storwize
+# Print CIM classes and properties of Storwize
 #
 
 import os
@@ -31,12 +31,8 @@ device_list_file = open(nd_parameters['device_file'])
 
 # form dictionary of matching storage concepts and cim properties
 # more details in https://www.ibm.com/support/knowledgecenter/STHGUJ_8.3.1/com.ibm.storwize.v5000.831.doc/svc_conceptsmaptocimconcepts_3skacv.html
-#sc_maps = sd_parameters['storage_concept_cim_mapping']
 with open(sd_parameters['storage_cim_map_file'], "r") as storage_cim_map_file:
     sc_maps = load(storage_cim_map_file)
-
-# Convert string with storage cim mapping to dictionary
-#sc_maps = eval(sc_maps)
 
 
 def main():

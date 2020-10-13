@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 #
-# IBM Storwize disks discovery for Zabbix
+# IBM Storwize objects discovery for Zabbix
 #
-# 2018 Denis Pavlov
+# 2020 Denis Pavlov
 #
-# Discover physical and logical disks from Storwize via CIM/WBEM and sends it to Zabbix Server via Zabbix Sender API
+# Discover storage objects from Storwize including physical and logical disks, via CIM/WBEM and sends it to Zabbix Server via Zabbix Sender API
 #
 # Use with template Template Storage Pystormon
 #

@@ -3,7 +3,7 @@
 #
 # IBM Storwize performance monitoring script for Zabbix
 #
-# 2018 Denis Pavlov
+# 2020 Denis Pavlov
 #
 # Get perfomance statistic from Storwize via CIM/WBEM and sends it to Zabbix via Zabbix Sender API
 #

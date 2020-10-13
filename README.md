@@ -54,9 +54,9 @@ pip3 install -r requirements.txt
 
 11) Create cron jobs for zabbix trappers:
 ```
-echo "00 */1 * * *  /etc/zabbix/externalscripts/pystormon/storage_discovery.py" > /tmp/crontab && \
+echo "00 */1 * * *  /etc/zabbix/externalscripts/pystormon/storage_objects_discovery.py" > /tmp/crontab && \
 echo "*/1 * * * *   /etc/zabbix/externalscripts/pystormon/storage_perfomance.py" >> /tmp/crontab && \
-echo "*/5 * * * *   /etc/zabbix/externalscripts/pystormon/storage_status.py" >> /tmp/crontab && \
+echo "*/5 * * * *   /etc/zabbix/externalscripts/pystormon/storage_objects_status.py" >> /tmp/crontab && \
 crontab /tmp/crontab && rm /tmp/crontab
 ```
 

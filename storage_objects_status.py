@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 #
-# IBM Storwize disk status monitoring script for Zabbix
+# IBM Storwize storage objects status monitoring for Zabbix
 #
-# 2018 Denis Pavlov
+# 2020 Denis Pavlov
 #
-# Get status of disk parameters from Storwize via CIM/WBEM and sends it to Zabbix via Zabbix Sender API
+# Get status of storage objects parameters from Storwize including physical and logical disks, via CIM/WBEM and sends it to Zabbix via Zabbix Sender API
 #
 # Use with template Template Storage Pystormon
 #
