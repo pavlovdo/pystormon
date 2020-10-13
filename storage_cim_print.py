@@ -3,7 +3,7 @@
 #
 # IBM Storwize CIM print
 #
-# 2019 Denis Pavlov 
+# 2019 Denis Pavlov
 #
 # Print CIM properties of Storwize
 #
@@ -11,42 +11,63 @@
 import os
 
 from configread import configread
+from json import load
 from pynetdevices import WBEMDevice
 
-# read parameters from config file
-conf_file = ('/etc/zabbix/externalscripts/' + os.path.abspath(__file__).split('/')[-2] + '/'
+# get config file name
+conf_file = ('/etc/orbit/' + os.path.abspath(__file__).split('/')[-2] + '/'
              + os.path.abspath(__file__).split('/')[-2] + '.conf')
 
-nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file', 'login', 'password',
-                           'name_space')
+# read network device parameters from config and save it to dict
+nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file',
+                           'login', 'password', 'name_space', 'slack_hook')
 
-# open file with list of monitored storages
+# read storage device parameters from config and save it to another dict
+sd_parameters = configread(conf_file, 'StorageDevice', 'storage_cim_map_file',
+                           'printing')
+
+# open config file with list of monitored storages
 device_list_file = open(nd_parameters['device_file'])
 
-# dictionary of matching storwize concepts and cim properties
-# https://www.ibm.com/support/knowledgecenter/STHGUJ/com.ibm.storwize.v5000.710.doc/svc_conceptsmaptocimconcepts_3skacv.html
-storwize_cim = {'Array': 'IBMTSSVC_Array', 'DiskDrive': 'IBMTSSVC_DiskDrive',
-                'mdisk': 'IBMTSSVC_BackendVolume', 'VDisk': 'IBMTSSVC_StorageVolume' }
+# form dictionary of matching storage concepts and cim properties
+# more details in https://www.ibm.com/support/knowledgecenter/STHGUJ_8.3.1/com.ibm.storwize.v5000.831.doc/svc_conceptsmaptocimconcepts_3skacv.html
+#sc_maps = sd_parameters['storage_concept_cim_mapping']
+with open(sd_parameters['storage_cim_map_file'], "r") as storage_cim_map_file:
+    sc_maps = load(storage_cim_map_file)
 
-# parse the storage list
-for device_line in device_list_file:
-    device_params = device_line.split(':')
-    device_type = device_params[0]
-    device_name = device_params[1]
-    device_ip = device_params[2]
+# Convert string with storage cim mapping to dictionary
+#sc_maps = eval(sc_maps)
 
-    # connect to each storage via WBEM, get conn object
-    if device_type == 'storwize':
-        device = WBEMDevice(device_name, device_ip, nd_parameters['login'],
-                            nd_parameters['password'])
-        namespace = nd_parameters.get('name_space', 'root/ibm')
-        conn = device.Connect(namespace)
 
-        # print all parameters for all instances (objects) for cim from storwize_cim
-        for storwize_concept in storwize_cim:
-            cim_name = storwize_cim[storwize_concept]
-            instances = conn.EnumerateInstances(cim_name,namespace=nd_parameters['name_space'])
-            print (storwize_concept)
-            for instance in instances:
-                for prop_name, prop_value in instance.items():
-                    print('  %s: %r' % (prop_name, prop_value))
+def main():
+
+    # parse the storage list
+    for device_line in device_list_file:
+        device_params = device_line.split(':')
+        device_type = device_params[0]
+        device_name = device_params[1]
+        device_ip = device_params[2]
+
+        # connect to each storage via WBEM, get conn object
+        if device_type == 'storwize':
+            device = WBEMDevice(device_name, device_ip,
+                                nd_parameters['login'],
+                                nd_parameters['password'],
+                                nd_parameters['slack_hook'])
+            # get namespace from config, root/ibm by default
+            namespace = nd_parameters.get('name_space', 'root/ibm')
+            conn = device.Connect(namespace)
+
+            # print all properties for all instances (objects) for cim classes from dict sc_maps
+            for sc_map in sc_maps:
+                sc_cim_class = sc_maps[sc_map]['cim_class']
+                instances = conn.EnumerateInstances(sc_cim_class,
+                                                    namespace=nd_parameters['name_space'])
+                print(sc_cim_class)
+                for instance in instances:
+                    for prop_name, prop_value in instance.items():
+                        print('  %s: %r' % (prop_name, prop_value))
+
+
+if __name__ == "__main__":
+    main()

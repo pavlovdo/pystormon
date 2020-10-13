@@ -8,9 +8,9 @@ def configread(conffile, section, *parameters):
     # read configuration file
     config = configparser.RawConfigParser()
     config.read(conffile)
-    params = dict()
+    params = {}
 
-    # check presence of parameters in config file
+    # check presence parameters in config file
     for parameter in parameters:
         try:
             params[parameter] = config.get(section, parameter)

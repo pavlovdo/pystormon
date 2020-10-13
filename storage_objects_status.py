@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 #
-# IBM Storwize disks discovery for Zabbix
+# IBM Storwize disk status monitoring script for Zabbix
 #
 # 2018 Denis Pavlov
 #
-# Discover physical and logical disks from Storwize via CIM/WBEM and sends it to Zabbix Server via Zabbix Sender API
+# Get status of disk parameters from Storwize via CIM/WBEM and sends it to Zabbix via Zabbix Sender API
 #
 # Use with template Template Storage Pystormon
 #
@@ -32,7 +32,6 @@ nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file',
 sd_parameters = configread(conf_file, 'StorageDevice', 'storage_cim_map_file',
                            'printing')
 
-# get flag for debug printing from config
 printing = eval(sd_parameters['printing'])
 
 # open config file with list of monitored storages
@@ -44,24 +43,34 @@ with open(sd_parameters['storage_cim_map_file'], "r") as storage_cim_map_file:
     sc_maps = load(storage_cim_map_file)
 
 
-def storage_objects_discovery(wbem_connection, cim_class, cim_property_name):
-    """ get list of storage objects """
+def storage_objects_get_params(wbem_connection, cim_class, cim_property_name, cim_properties_mon):
+    """ get status of disk parameters """
 
-    # create empty list for storage object names
-    result = []
+    # create empty dictionary for save storage objects parameters values
+    storage_objects = {}
 
     # form "SELECT" request string
-    request = 'SELECT ' + cim_property_name + ' FROM ' + cim_class
+    request = 'SELECT ' + ','.join(cim_properties_mon) + ' FROM ' + cim_class
 
     # request storage via WBEM
     storage_response = wbem_connection.ExecQuery('DMTF:CQL', request)
 
-    # parse reply and form a list of storage objects
+    # form dictionary of dictionaries of disk parameters
     for cim_object in storage_response:
-        object_name = cim_object.properties[cim_property_name].value
-        result.append(object_name)
+        storage_object = {}
+        so_name = cim_object.properties[cim_property_name].value
+        for so_property in cim_object.properties:
+            if cim_object.properties[so_property].value:
+                if type(cim_object.properties[so_property].value) == list:
+                    for value in cim_object.properties[so_property].value:
+                        index = cim_object.properties[so_property].value.index(
+                            value)
+                        storage_object[so_property + '.' + str(index)] = value
+                else:
+                    storage_object[so_property] = cim_object.properties[so_property].value
+        storage_objects[so_name] = storage_object
 
-    return result
+    return storage_objects
 
 
 def main():
@@ -73,7 +82,7 @@ def main():
         device_name = device_params[1]
         device_ip = device_params[2]
 
-        # connect to each storage via WBEM, get conn object
+        # connect to storage via WBEM, get conn object
         if device_type == 'storwize':
             device = WBEMDevice(device_name, device_ip,
                                 nd_parameters['login'],
@@ -88,34 +97,30 @@ def main():
 
             # iterate through dictionary of monitored storage concepts
             for storage_concept in sc_maps:
-                # get list of storage objects
-                so_names = storage_objects_discovery(conn, sc_maps[storage_concept]['cim_class'],
-                                                     sc_maps[storage_concept]['cim_property_name'])
+                # get values of object parameters for all object of each type
+                storage_objects = storage_objects_get_params(conn,
+                                                             sc_maps[storage_concept]['cim_class'],
+                                                             sc_maps[storage_concept]['cim_property_name'],
+                                                             sc_maps[storage_concept]['cim_properties_mon'])
 
-                so_names_dict = {}
-                so_names_list = []
+                # get status for each parameter for each storage object
+                for storage_object in storage_objects:
+                    for so_parameter in storage_objects[storage_object]:
+                        trapper_key = (so_parameter + '[' + storage_concept
+                                       + '.' + storage_object + ']')
+                        trapper_value = storage_objects[storage_object][so_parameter]
 
-                # create list of disk types and names in JSON
-                for so_name in so_names:
-                    so_name_json = {"{#SO_TYPE}": storage_concept,
-                                    "{#SO_NAME}": so_name}
-                    so_names_list.append(so_name_json)
+                        # form list of data for sending to zabbix
+                        packet.append(ZabbixMetric(
+                            device_name,
+                            trapper_key,
+                            trapper_value))
 
-                # form data for send to zabbix
-                so_names_dict['data'] = so_names_list
-
-                trapper_key = sc_maps[storage_concept]['zabbix_discovery_key']
-                trapper_value = str(so_names_dict).replace("\'", "\"")
-
-                # form packet for sending to zabbix
-                packet.append(ZabbixMetric(device_name, trapper_key,
-                                           trapper_value))
-
-                # print data for visual check
-                if printing:
-                    print(device_name)
-                    print(trapper_key)
-                    print(trapper_value)
+                        # print data for visual check
+                        if printing:
+                            print(device_name)
+                            print(trapper_key)
+                            print(trapper_value)
 
             # trying send data to zabbix
             try:

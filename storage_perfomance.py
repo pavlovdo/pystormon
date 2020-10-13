@@ -3,7 +3,7 @@
 #
 # IBM Storwize performance monitoring script for Zabbix
 #
-# 2018 Denis Pavlov 
+# 2018 Denis Pavlov
 #
 # Get perfomance statistic from Storwize via CIM/WBEM and sends it to Zabbix via Zabbix Sender API
 #
@@ -13,100 +13,132 @@
 import os
 
 from configread import configread
+from json import load
 from pynetdevices import WBEMDevice
+from pyslack import slack_post
 from pyzabbix import ZabbixMetric, ZabbixSender
 
-
-def disks_perf(wbem_connection, disk_table, disk_name_column, perf_table, perf_counters_names):
-    """ get performance statistics for disks """
-
-    disks_names_list = []
-    disks_perfs_list = []
-    disks_perfs_dict = {}
-
-    # form "SELECT" request strings
-    disks_request = 'SELECT ' + disk_name_column + ' FROM ' + disk_table
-    perf_request = 'SELECT ' + ','.join(perf_counters_names) + ' FROM ' + perf_table
-   
-    # request storage via WBEM
-    disks_names_cim = wbem_connection.ExecQuery('DMTF:CQL', disks_request)
-    disks_perfs_cim = wbem_connection.ExecQuery('DMTF:CQL', perf_request)
-
-    # form list of storage disks
-    for disk_name_cim in disks_names_cim:
-        disks_names_list.append(disk_name_cim.properties[disk_name_column].value)
-
-    # form list of lists of disks perf counters
-    for disk_perf_cim in disks_perfs_cim:
-        disk_perf_list = []
-        for perf_counter_name in perf_counters_names:
-            disk_perf_list.append(int(disk_perf_cim.properties[perf_counter_name].value))
-        disks_perfs_list.append(disk_perf_list)
-
-    # form dict of disks perf counters
-    for disk_name, disk_perf in zip(disks_names_list, disks_perfs_list):
-        disks_perfs_dict[disk_name] = disk_perf
-
-    return disks_perfs_dict 
-
-
-# read parameters from config file
-conf_file = ('/etc/zabbix/externalscripts/' + os.path.abspath(__file__).split('/')[-2] + '/'
+# get config file name
+conf_file = ('/etc/orbit/' + os.path.abspath(__file__).split('/')[-2] + '/'
              + os.path.abspath(__file__).split('/')[-2] + '.conf')
 
-# read parameters and save it to dict for connecting to storage and sending data to zabbix
-nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file', 'login', 'password',
-                           'name_space', 'zabbix_server')
+# read network device parameters from config and save it to dict
+nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file',
+                           'login', 'password', 'name_space', 'zabbix_server',
+                           'slack_hook')
 
-# open file with list of monitored storages
+# read storage device parameters from config and save it to another dict
+sd_parameters = configread(conf_file, 'StorageDevice', 'storage_cim_map_file',
+                           'printing')
+
+# get flag for debug printing from config
+printing = eval(sd_parameters['printing'])
+
+# open config file with list of monitored storages
 device_list_file = open(nd_parameters['device_file'])
 
-# create list of perfomance counters names
-perf_counters_names = ['ReadIOs', 'WriteIOs', 'TotalIOs', 'KBytesRead', 'KBytesWritten', 'KBytesTransferred',
-                       'ReadHitIOs', 'WriteHitIOs']
+# form dictionary of matching storage concepts and cim properties
+# more details in https://www.ibm.com/support/knowledgecenter/STHGUJ_8.3.1/com.ibm.storwize.v5000.831.doc/svc_conceptsmaptocimconcepts_3skacv.html
+with open(sd_parameters['storage_cim_map_file'], "r") as storage_cim_map_file:
+    sc_maps = load(storage_cim_map_file)
 
-# create dictionary of monitored entities with it WBEMs parameters
-disk_types = {'Volume': ['IBMTSSVC_StorageVolume', 'VolumeName', 'IBMTSSVC_StorageVolumeStatistics']}
 
-# parse the storage list
-for device_line in device_list_file:
-    device_params = device_line.split(':')
-    device_type = device_params[0]
-    device_name = device_params[1]
-    device_ip = device_params[2]
+def storage_objects_get_perf(wbem_connection, cim_class, cim_property_name, cim_perf_class, cim_perf_properties):
+    """ get performance statistics for storage objects """
 
-    # connect to storage via WBEM, get conn object
-    if device_type == 'storwize':
-        device = WBEMDevice(device_name, device_ip, nd_parameters['login'],
-                            nd_parameters['password'])
-        namespace = nd_parameters.get('name_space', 'root/ibm')
-        conn = device.Connect(namespace)
+    objects_names_list = []
+    objects_perfs_list = []
+    objects_perfs_dict = {}
 
-        packet = []
+    # form "SELECT" request strings
+    objects_request = 'SELECT ' + cim_property_name + ' FROM ' + cim_class
+    perf_request = 'SELECT ' + \
+        ','.join(cim_perf_properties) + ' FROM ' + cim_perf_class
 
-        # get statistic for storage disk types
-        for disk_type in disk_types:
-            disk_type_perf = disks_perf(conn, disk_types[disk_type][0], disk_types[disk_type][1],
-                                        disk_types[disk_type][2], perf_counters_names)
+    # request storage via WBEM
+    objects_names_cim = wbem_connection.ExecQuery('DMTF:CQL', objects_request)
+    objects_perfs_cim = wbem_connection.ExecQuery('DMTF:CQL', perf_request)
 
-            # get statistic for each storage disk, form data for sending to zabbix
-            for disk_name in disk_type_perf:
-                for perf_counter_name, perf_counter_value in zip(perf_counters_names, disk_type_perf[disk_name]):
-                    trapper_key = perf_counter_name + '[' + disk_type + '.' + disk_name + ']'
-                    trapper_value = perf_counter_value
+    # form list of storage objects
+    for object_name_cim in objects_names_cim:
+        objects_names_list.append(
+            object_name_cim.properties[cim_property_name].value)
 
-                    # form list of data for sending to zabbix
-                    packet.append(ZabbixMetric(device_name, trapper_key, trapper_value))
+    # form list of lists of objects perf counters
+    for object_perf_cim in objects_perfs_cim:
+        object_perf_list = []
+        for cim_perf_property in cim_perf_properties:
+            object_perf_list.append(
+                int(object_perf_cim.properties[cim_perf_property].value))
+        objects_perfs_list.append(object_perf_list)
 
-                    # print data for visual check
-                    print (device_name)
-                    print (trapper_key)
-                    print (trapper_value)
+    # form dict of objects perf counters
+    for object_name, object_perf in zip(objects_names_list, objects_perfs_list):
+        objects_perfs_dict[object_name] = object_perf
 
-        # trying send statistic to zabbix
-        try:
-            result = ZabbixSender(nd_parameters['zabbix_server']).send(packet)
-        except ConnectionRefusedError as error:
-            print ('Unexpected exception in \"ZabbixSender(' + nd_parameters['zabbix_server'] + ').send(packet)\": '
-                   + str(error))
-            exit(1)
+    return objects_perfs_dict
+
+
+def main():
+    # parse the storage list
+    for device_line in device_list_file:
+        device_params = device_line.split(':')
+        device_type = device_params[0]
+        device_name = device_params[1]
+        device_ip = device_params[2]
+
+        # connect to each storage via WBEM, get conn object
+        if device_type == 'storwize':
+            device = WBEMDevice(device_name, device_ip,
+                                nd_parameters['login'],
+                                nd_parameters['password'],
+                                nd_parameters['slack_hook'])
+            # get namespace from config, root/ibm by default
+            namespace = nd_parameters.get('name_space', 'root/ibm')
+            conn = device.Connect(namespace)
+
+            # initialize packet for sending to zabbix
+            packet = []
+
+           # iterate through dictionary of monitored storage concepts
+            for storage_concept in sc_maps:
+                # get values of object perfomance statistic for all object of each type where perfomance class is given
+                if 'cim_perfomance_class' in sc_maps[storage_concept]:
+                    storage_objects_perf = storage_objects_get_perf(conn,
+                                                                    sc_maps[storage_concept]['cim_class'],
+                                                                    sc_maps[storage_concept]['cim_property_name'],
+                                                                    sc_maps[storage_concept]['cim_perfomance_class'],
+                                                                    sc_maps[storage_concept]['cim_properties_perfomance'])
+
+                    # get statistic for each storage object, form data for sending to zabbix
+                    for so_name in storage_objects_perf:
+                        for perf_counter_name, perf_counter_value in zip(sc_maps[storage_concept]['cim_properties_perfomance'],
+                                                                         storage_objects_perf[so_name]):
+                            trapper_key = (perf_counter_name + '['
+                                           + storage_concept + '.' + so_name + ']')
+                            trapper_value = perf_counter_value
+
+                            # form list of data for sending to zabbix
+                            packet.append(ZabbixMetric(
+                                device_name, trapper_key, trapper_value))
+
+                            # print data for visual check
+                            if printing:
+                                print(device_name)
+                                print(trapper_key)
+                                print(trapper_value)
+
+            # trying send data to zabbix
+            try:
+                ZabbixSender(nd_parameters['zabbix_server']).send(packet)
+            except ConnectionRefusedError as error:
+                if nd_parameters['slack_hook']:
+                    slack_post(nd_parameters['slack_hook'],
+                               'Unexpected exception in \"ZabbixSender()' +
+                               '.send(packet)\": ' + str(error),
+                               nd_parameters['zabbix_server'])
+                exit(1)
+
+
+if __name__ == "__main__":
+    main()

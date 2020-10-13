@@ -60,6 +60,9 @@ echo "*/5 * * * *   /etc/zabbix/externalscripts/pystormon/storage_status.py" >> 
 crontab /tmp/crontab && rm /tmp/crontab
 ```
 
+12) Optionally, you can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
+
+
 Tested
 ======
 Storwize v3700, v5010, v5030, v7000
