@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 #
-# IBM Storwize CIM classes and properties print
+# IBM Storwize CIM print
 #
-# 2019 Denis Pavlov
+# 2020 Denis Pavlov
 #
-# Print CIM classes and properties of Storwize
+# Print CIM properties of Storwize
 #
 
 import os
@@ -55,11 +55,11 @@ def main():
             conn = device.Connect(namespace)
 
             # print all properties for all instances (objects) for cim classes from dict sc_maps
-            for sc_map in sc_maps:
-                sc_cim_class = sc_maps[sc_map]['cim_class']
+            for storage_concept in sc_maps:
+                sc_cim_class = sc_maps[storage_concept]['cim_class']
                 instances = conn.EnumerateInstances(sc_cim_class,
                                                     namespace=nd_parameters['name_space'])
-                print(sc_cim_class)
+                print(storage_concept, sc_cim_class)
                 for instance in instances:
                     for prop_name, prop_value in instance.items():
                         print('  %s: %r' % (prop_name, prop_value))
