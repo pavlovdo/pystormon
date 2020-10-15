@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
-    <date>2020-10-14T13:41:07Z</date>
+    <date>2020-10-15T14:11:52Z</date>
     <groups>
         <group>
             <name>Templates/Hardware</name>
@@ -102,12 +102,18 @@
                             <type>TRAP</type>
                             <key>BlockSize[Array.{#SO_NAME}]</key>
                             <delay>0</delay>
-                            <units>bytes</units>
+                            <units>B</units>
                             <applications>
                                 <application>
                                     <name>Arrays Status</name>
                                 </application>
                             </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>1024</params>
+                                </step>
+                            </preprocessing>
                         </item_prototype>
                         <item_prototype>
                             <name>Capacity of {#SO_TYPE}.{#SO_NAME}</name>
@@ -201,7 +207,9 @@
                         </item_prototype>
                         <item_prototype>
                             <name>EnabledDefault of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
                             <key>EnabledDefault[Array.{#SO_NAME}]</key>
+                            <delay>0</delay>
                             <applications>
                                 <application>
                                     <name>Arrays Status</name>
@@ -471,10 +479,11 @@
                             </preprocessing>
                         </item_prototype>
                         <item_prototype>
-                            <name>RaidLevel 1 of {#SO_TYPE}.{#SO_NAME}</name>
+                            <name>RaidLevel 0 of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>RaidLevel.1[{#SO_TYPE}.{#SO_NAME}]</key>
+                            <key>RaidLevel.0[{#SO_TYPE}.{#SO_NAME}]</key>
                             <delay>0</delay>
+                            <units>RaidLevel.0[{#SO_TYPE}.{#SO_NAME}]</units>
                             <applications>
                                 <application>
                                     <name>Arrays Status</name>
@@ -482,11 +491,10 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>RaidLevel 0 of {#SO_TYPE}.{#SO_NAME}</name>
+                            <name>RaidLevel 1 of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>RaidLevel[{#SO_TYPE}.{#SO_NAME}]</key>
+                            <key>RaidLevel.1[{#SO_TYPE}.{#SO_NAME}]</key>
                             <delay>0</delay>
-                            <units>RaidLevel.0[{#SO_TYPE}.{#SO_NAME}]</units>
                             <applications>
                                 <application>
                                     <name>Arrays Status</name>
@@ -1252,7 +1260,7 @@
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>Mdisk groups</name>
+                    <name>Mdisk Groups</name>
                     <type>TRAP</type>
                     <key>mdiskgrps.discovery</key>
                     <delay>0</delay>
@@ -1658,7 +1666,9 @@
                         </item_prototype>
                         <item_prototype>
                             <name>EnabledDefault of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
                             <key>EnabledDefault[mdisk.{#SO_NAME}]</key>
+                            <delay>0</delay>
                             <applications>
                                 <application>
                                     <name>Mdisks Status</name>
@@ -2625,7 +2635,9 @@
                         </item_prototype>
                         <item_prototype>
                             <name>EnabledDefault of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
                             <key>EnabledDefault[VDisk.{#SO_NAME}]</key>
+                            <delay>0</delay>
                             <applications>
                                 <application>
                                     <name>VDisks Status</name>
