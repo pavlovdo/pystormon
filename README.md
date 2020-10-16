@@ -1,6 +1,6 @@
 Description
 ===========
-Zabbix Storage Monitoring through CIM/WBEM
+Zabbix Storage Monitoring via CIM/WBEM
 
 Tested with IBM Storwize
 
@@ -45,14 +45,17 @@ startstats -interval 1
 In host configuration set parameters "Host name" and "IP address" for Agent Interface.
 Use the same hostname as in the file devices.conf, storwize.example.com for example.
 
-9) Install Python 3 and pip3 if it is not installed;
+9) Further you have option - run scripts from host or run scripts from docker container.
 
-10) Install required python modules:
+If you want to run scripts from host:
+A) Install Python 3 and pip3 if it is not installed;
+
+B) Install required python modules:
 ```
 pip3 install -r requirements.txt
 ```
 
-11) Create cron jobs for zabbix trappers:
+C) Create cron jobs for zabbix trappers:
 ```
 echo "00 */1 * * *  /etc/zabbix/externalscripts/pystormon/storage_objects_discovery.py" > /tmp/crontab && \
 echo "*/5 * * * *   /etc/zabbix/externalscripts/pystormon/storage_objects_status.py" >> /tmp/crontab && \
@@ -60,7 +63,19 @@ echo "*/1 * * * *   /etc/zabbix/externalscripts/pystormon/storage_perfomance.py"
 crontab /tmp/crontab && rm /tmp/crontab
 ```
 
-12) Optionally, you can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
+If you want to run scripts from docker container:
+A) Run build.sh:
+```
+cd /etc/zabbix/externalscripts/pystormon
+./build.sh
+```
+
+B) Run dockerrun.sh;
+```
+./dockerrun.sh
+```
+
+10) Optionally, you can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
 and in Template Storage Pystormon.xml. Storage CIM classes maps to Zabbix discoveries, and CIM class properties maps 
 to Zabbix discoveries items.
 
