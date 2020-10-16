@@ -8,15 +8,13 @@
 # Print CIM properties of Storwize
 #
 
-import os
-
 from configread import configread
 from json import load
 from pynetdevices import WBEMDevice
 
-# get config file name
-conf_file = ('/etc/orbit/' + os.path.abspath(__file__).split('/')[-2] + '/'
-             + os.path.abspath(__file__).split('/')[-2] + '.conf')
+
+# set config file name
+conf_file = '/etc/zabbix/externalscripts/pystormon/conf.d/pystormon.conf'
 
 # read network device parameters from config and save it to dict
 nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file',
