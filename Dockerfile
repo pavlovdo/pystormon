@@ -6,6 +6,7 @@ RUN yum update -y && yum install -y \
     epel-release \ 
     python36
 
+COPY *.py requirements.txt /etc/zabbix/externalscripts/pystormon/
 WORKDIR /etc/zabbix/externalscripts/pystormon
 
 RUN pip3.6 install -r requirements.txt 
