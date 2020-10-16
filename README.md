@@ -48,6 +48,7 @@ Use the same hostname as in the file devices.conf, storwize.example.com for exam
 9) Further you have option - run scripts from host or run scripts from docker container.
 
 If you want to run scripts from host:
+
 A) Install Python 3 and pip3 if it is not installed;
 
 B) Install required python modules:
@@ -64,6 +65,7 @@ crontab /tmp/crontab && rm /tmp/crontab
 ```
 
 If you want to run scripts from docker container:
+
 A) Run build.sh:
 ```
 cd /etc/zabbix/externalscripts/pystormon
