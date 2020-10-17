@@ -19,4 +19,4 @@ RUN echo "00 */1 * * * /etc/zabbix/externalscripts/pystormon/storage_objects_dis
     echo "*/1 * * * * /etc/zabbix/externalscripts/pystormon/storage_perfomance.py" >> /tmp/crontab && \
     crontab /tmp/crontab && rm /tmp/crontab
 
-CMD ["/usr/sbin/crond","-n"]
+CMD ["crond","-n"]
