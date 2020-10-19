@@ -46,6 +46,7 @@
     },
     "DiskDrive": {
         "cim_class": "IBMTSSVC_DiskDrive",
+        "cim_perfomance_class": "IBMTSSVC_DiskDriveStatistics",	
         "cim_property_name": "Name",
         "cim_properties_mon": [
             "BlockSize",
@@ -78,6 +79,17 @@
             "UID",
             "Use",
             "VendorID"
+        ],
+        "cim_properties_perfomance": [
+	    "IOTimeCounter",
+            "KBytesRead",
+            "KBytesTransferred",
+            "KBytesWritten",
+            "ReadIOs",
+	    "ReadIOTimeCounter",
+            "TotalIOs",
+            "WriteIOs",
+	    "WriteIOTimeCounter"
         ],
         "zabbix_discovery_key": "diskdrives.discovery"
     },
@@ -286,14 +298,17 @@
             "VolumeId"
         ],
         "cim_properties_perfomance": [
+            "IOTimeCounter",
             "KBytesRead",
             "KBytesTransferred",
             "KBytesWritten",
             "ReadHitIOs",
             "ReadIOs",
+            "ReadIOTimeCounter",
             "TotalIOs",
             "WriteHitIOs",
-            "WriteIOs"
+            "WriteIOs",
+            "WriteIOTimeCounter"
         ],
         "zabbix_discovery_key": "vdisks.discovery"
     }
