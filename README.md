@@ -38,8 +38,7 @@ cd /etc/zabbix/externalscripts
 sudo git clone https://github.com/pavlovdo/pystormon
 ```
 
-4) 
-A) Check execute permissions for scripts:
+4) A) Check execute permissions for scripts:
 ```
 ls -l *.py *.sh
 ```
