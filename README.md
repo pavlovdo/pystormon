@@ -31,12 +31,17 @@ chuser -usergrp RestrictedAdmin zabbix
 startstats -interval 1
 ```
 
-3) Clone pystormon repo to directory /etc/zabbix/externalscripts of monitoring server;
+3) Clone pystormon repo to directory /etc/zabbix/externalscripts of monitoring server:
+```
+sudo mkdir -p /etc/zabbix/externalscripts
+cd /etc/zabbix/externalscripts
+sudo git clone https://github.com/pavlovdo/pystormon
+```
 
 4) Check that scripts in project directory have execute permissions, if not:
 ```
 cd /etc/zabbix/externalscripts/pystormon
-chmod +x *.py *.sh
+sudo chmod +x *.py *.sh
 ```
 
 5) Change example configuration files pystormon.conf: login, password, address of zabbix_server;
