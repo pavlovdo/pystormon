@@ -33,19 +33,25 @@ startstats -interval 1
 
 3) Clone pystormon repo to directory /etc/zabbix/externalscripts of monitoring server;
 
-4) Change example configuration files pystormon.conf: login, password, address of zabbix_server;
+4) Check that scripts in project directory have execute permissions, if not:
+```
+cd /etc/zabbix/externalscripts/pystormon
+chmod +x *.py *.sh
+```
 
-5) Change example configuration files devices.conf: IP and names of storages;
+5) Change example configuration files pystormon.conf: login, password, address of zabbix_server;
 
-6) Give and check network access from monitoring server to storage management network CIM/WBEM port (TCP/5989);
+6) Change example configuration files devices.conf: IP and names of storages;
 
-7) Import Template Storage Pystormon.xml to Zabbix;
+7) Give and check network access from monitoring server to storage management network CIM/WBEM port (TCP/5989);
 
-8) Create your storage hosts in Zabbix and link Template Storage Pystormon to them.
+8) Import Template Storage Pystormon.xml to Zabbix;
+
+9) Create your storage hosts in Zabbix and link Template Storage Pystormon to them.
 In host configuration set parameters "Host name" and "IP address" for Agent Interface.
 Use the same hostname as in the file devices.conf, storwize.example.com for example.
 
-9) Further you have option - run scripts from host or run scripts from docker container.
+10) Further you have option - run scripts from host or run scripts from docker container.
 
 If you want to run scripts from host:
 
@@ -77,11 +83,11 @@ B) Run dockerrun.sh;
 ./dockerrun.sh
 ```
 
-10) Optionally, you can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
+11) Optionally, you can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
 and in Template Storage Pystormon.xml. Storage CIM classes maps to Zabbix discoveries, and CIM class properties maps 
 to Zabbix discoveries items.
 
-11) Also, optionally you can send exception alarms via slack hook to your slack channel. For it, set parameter slack_hook
+12) Also, optionally you can send exception alarms via slack hook to your slack channel. For it, set parameter slack_hook
 in conf.d/pystormon.conf. More details in https://api.slack.com/messaging/webhooks
 
 
