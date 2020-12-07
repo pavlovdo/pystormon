@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
-    <date>2020-10-19T08:56:10Z</date>
+    <date>2020-12-07T11:27:34Z</date>
     <groups>
         <group>
             <name>Templates/Hardware</name>
@@ -964,7 +964,7 @@
                         <item_prototype>
                             <name>Read IOPS of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>ReadIOs[{DiskDrive.{#SO_NAME}]</key>
+                            <key>ReadIOs[DiskDrive.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
@@ -3200,7 +3200,7 @@
                         <item_prototype>
                             <name>Read IOPS of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>ReadIOs[{VDisk.{#SO_NAME}]</key>
+                            <key>ReadIOs[VDisk.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
