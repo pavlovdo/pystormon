@@ -54,7 +54,7 @@ sudo chmod +x *.py *.sh
 7) Give and check network access from monitoring server to storage management network CIM/WBEM port (TCP/5989);
 
 8) Check configuration and running zabbix trappers on your zabbix server or proxy:
-...
+```
 ### Option: StartTrappers
 #       Number of pre-forked instances of trappers.
 #       Trappers accept incoming connections from Zabbix sender, active agents and active proxies.
@@ -65,7 +65,7 @@ sudo chmod +x *.py *.sh
 # Range: 0-1000
 # Default:
 # StartTrappers=5
-...
+```
 ```
 # ps aux | grep trapper
 zabbix    776389  0.2  0.4 2049416 111772 ?      S    дек07  63:41 /usr/sbin/zabbix_server: trapper #1 [processed data in 0.000166 sec, waiting for connection]
