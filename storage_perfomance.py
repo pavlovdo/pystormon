@@ -128,7 +128,9 @@ def main():
 
             # trying send data to zabbix
             try:
-                ZabbixSender(nd_parameters['zabbix_server']).send(packet)
+                zabbix_send_status = ZabbixSender(nd_parameters['zabbix_server']).send(packet)
+                if printing:
+                    print('Status of sending data to zabbix:\n', zabbix_send_status)                
             except ConnectionRefusedError as error:
                 if nd_parameters['slack_hook']:
                     slack_post(nd_parameters['slack_hook'],
