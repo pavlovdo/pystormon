@@ -53,13 +53,35 @@ sudo chmod +x *.py *.sh
 
 7) Give and check network access from monitoring server to storage management network CIM/WBEM port (TCP/5989);
 
-8) Import Template Storage Pystormon.xml to Zabbix;
+8) Check configuration and running zabbix trappers on your zabbix server or proxy:
+```
+### Option: StartTrappers
+#       Number of pre-forked instances of trappers.
+#       Trappers accept incoming connections from Zabbix sender, active agents and active proxies.
+#       At least one trapper process must be running to display server availability and view queue
+#       in the frontend.
+#
+# Mandatory: no
+# Range: 0-1000
+# Default:
+# StartTrappers=5
+```
+```
+# ps aux | grep trapper
+zabbix    776389  0.2  0.4 2049416 111772 ?      S    дек07  63:41 /usr/sbin/zabbix_server: trapper #1 [processed data in 0.000166 sec, waiting for connection]
+zabbix    776390  0.2  0.4 2049512 112016 ?      S    дек07  63:43 /usr/sbin/zabbix_server: trapper #2 [processed data in 0.000342 sec, waiting for connection]
+zabbix    776391  0.2  0.4 2049452 112092 ?      S    дек07  63:12 /usr/sbin/zabbix_server: trapper #3 [processed data in 0.000301 sec, waiting for connection]
+zabbix    776392  0.2  0.4 2049600 112064 ?      S    дек07  63:57 /usr/sbin/zabbix_server: trapper #4 [processed data in 0.000187 sec, waiting for connection]
+zabbix    776393  0.2  0.4 2049412 111836 ?      S    дек07  63:31 /usr/sbin/zabbix_server: trapper #5 [processed data in 0.000176 sec, waiting for connection]
+```
 
-9) Create your storage hosts in Zabbix and link Template Storage Pystormon to them.
+9) Import Template Storage Pystormon.xml to Zabbix;
+
+10) Create your storage hosts in Zabbix and link Template Storage Pystormon to them.
 In host configuration set parameters "Host name" and "IP address" for Agent Interface.
 Use the same hostname as in the file devices.conf, storwize.example.com for example.
 
-10) Further you have option - run scripts from host or run scripts from docker container.
+11) Further you have options: run scripts from host or run scripts from docker container.
 
 If you want to run scripts from host:
 
@@ -91,11 +113,11 @@ B) Run dockerrun.sh;
 ./dockerrun.sh
 ```
 
-11) Optionally, you can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
+12) Optionally, you can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
 and in Template Storage Pystormon.xml. Storage CIM classes maps to Zabbix discoveries, and CIM class properties maps 
 to Zabbix discoveries items.
 
-12) Also, optionally you can send exception alarms via slack hook to your slack channel. For it, set parameter slack_hook
+13) Also, optionally you can send exception alarms via slack hook to your slack channel. For it, set parameter slack_hook
 in conf.d/pystormon.conf. More details in https://api.slack.com/messaging/webhooks
 
 
