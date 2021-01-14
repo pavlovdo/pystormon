@@ -1,0 +1,3786 @@
+{
+    "zabbix_export": {
+        "version": "5.2",
+        "date": "2021-01-14T19:30:28Z",
+        "groups": [
+            {
+                "name": "Templates/Hardware"
+            }
+        ],
+        "templates": [
+            {
+                "template": "Storage Pystormon",
+                "name": "Storage Pystormon",
+                "templates": [
+                    {
+                        "name": "ICMP Ping"
+                    }
+                ],
+                "groups": [
+                    {
+                        "name": "Templates/Hardware"
+                    }
+                ],
+                "applications": [
+                    {
+                        "name": "Arrays Status"
+                    },
+                    {
+                        "name": "Disk Drives Status"
+                    },
+                    {
+                        "name": "Enclosure Status"
+                    },
+                    {
+                        "name": "Mdisk Groups Status"
+                    },
+                    {
+                        "name": "Mdisks Status"
+                    },
+                    {
+                        "name": "Storage Perfomance"
+                    },
+                    {
+                        "name": "System Status"
+                    },
+                    {
+                        "name": "VDisks Status"
+                    }
+                ],
+                "discovery_rules": [
+                    {
+                        "name": "Arrays",
+                        "type": "TRAP",
+                        "key": "arrays.discovery",
+                        "delay": "0",
+                        "lifetime": "3d",
+                        "item_prototypes": [
+                            {
+                                "name": "Access of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Access[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "AdditionalAvailability 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "AdditionalAvailability.0[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "AdditionalAvailability 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "AdditionalAvailability.1[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "AllocatedCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "AllocatedCapacity[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Block Size of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "BlockSize[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Capacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Capacity[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ConsumableBlocks of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ConsumableBlocks[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DataOrganization of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DataOrganization[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DataRedundancy of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DataRedundancy[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Dedupe of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Dedupe[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DeltaReservation of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DeltaReservation[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Distributed of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Distributed[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ElementName of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ElementName[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnabledDefault of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnabledDefault[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnabledState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnabledState[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Encrypt of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Encrypt[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ExtentStatus 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ExtentStatus.0[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ExtentStatus 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ExtentStatus.1[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ExtentStripeLength of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ExtentStripeLength[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "IsBasedOnUnderlyingRedundancy of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "IsBasedOnUnderlyingRedundancy[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "IsConcatenated of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "IsConcatenated[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Mode of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Mode[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NativeStatus of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NativeStatus[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NoSinglePointOfFailure of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NoSinglePointOfFailure[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NumberOfBlocks of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NumberOfBlocks[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.0[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.1[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OverProvisioned of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OverProvisioned[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PackageRedundancy of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PackageRedundancy[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PhysicalCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PhysicalCapacity[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PhysicalFreeCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PhysicalFreeCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PoolID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PoolID[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Poolname of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Poolname[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Primordial of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Primordial[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RaidLevel 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RaidLevel.0[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RaidLevel 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RaidLevel.1[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RaidStatus of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RaidStatus[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Redundancy of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Redundancy[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RequestedState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RequestedState[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SequentialAccess of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SequentialAccess[Array.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "StripSize of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "StripSize[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SupportsUnmap of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SupportsUnmap[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "WriteProtected of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "WriteProtected[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Arrays Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Disk Drives",
+                        "type": "TRAP",
+                        "key": "diskdrives.discovery",
+                        "delay": "0",
+                        "lifetime": "1d",
+                        "item_prototypes": [
+                            {
+                                "name": "Block Size of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "BlockSize[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Capacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Capacity[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Compressed of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Compressed[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DeviceID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DeviceID[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EffectiveUsedCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EffectiveUsedCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnabledDefault of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnabledDefault[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnabledState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnabledState[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnclosureID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnclosureID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Error Sequence Number of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ErrorSequenceNumber[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{nodata(5m)}=0",
+                                        "name": "Error {ITEM.VALUE} is occured on {#SO_TYPE}.{#SO_NAME}",
+                                        "priority": "HIGH"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Firmware Level of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "FirmwareLevel[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{diff()}=1",
+                                        "name": "Firmware Level of {#SO_TYPE}.{#SO_NAME} has changed",
+                                        "priority": "AVERAGE"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "FRU Identity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "FRUIdentity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{diff()}=1",
+                                        "name": "FRU Identity of {#SO_TYPE}.{#SO_NAME} has changed",
+                                        "priority": "AVERAGE"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "FRU Part Number of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "FRUPartNum[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{diff()}=1",
+                                        "name": "FRU Part Number of {#SO_TYPE}.{#SO_NAME} has changed",
+                                        "priority": "AVERAGE"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "HealthState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "HealthState[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Accumulated time for all I/O operations of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "IOTimeCounter[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "ms",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "SIMPLE_CHANGE",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Read rate of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "KBytesRead[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B/s",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Transfer rate of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "KBytesTransferred[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B/s",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Write rate of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "KBytesWritten[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B/s",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "MdiskID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "MdiskID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Mdisk Name of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "MdiskName[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "MemberID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "MemberID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Name of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Name[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.0[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.1[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PhysicalCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PhysicalCapacity[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PhysicalUsedCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PhysicalUsedCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ProductID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ProductID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{diff()}=1",
+                                        "name": "ProductID of {#SO_TYPE}.{#SO_NAME} has changed",
+                                        "priority": "AVERAGE"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "QuorumId of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "QuorumId[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Read IOPS of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ReadIOs[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Accumulated time for all read operations of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ReadIOTimeCounter[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "ms",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "SIMPLE_CHANGE",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RequestedState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RequestedState[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RPM of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RPM[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SlotID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SlotID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{diff()}=1",
+                                        "name": "SlotID of {#SO_TYPE}.{#SO_NAME} has changed",
+                                        "priority": "AVERAGE"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TechType of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TechType[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Total IOPS of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TotalIOs[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TransitioningToState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TransitioningToState[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "UID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "UID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Use of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Use[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Disk Drive Use"
+                                }
+                            },
+                            {
+                                "name": "VendorID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "VendorID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Disk Drives Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Write IOPS of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "WriteIOs[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Accumulated time for all write operations of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "WriteIOTimeCounter[DiskDrive.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "ms",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "SIMPLE_CHANGE",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Enclosures",
+                        "type": "TRAP",
+                        "key": "enclosures.discovery",
+                        "delay": "0",
+                        "lifetime": "3d",
+                        "item_prototypes": [
+                            {
+                                "name": "ChassisPackageType of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ChassisPackageType[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DriveSlots of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DriveSlots[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ElementName of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ElementName[Enclosure.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnclosureStatus of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnclosureStatus[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "HealthState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "HealthState[Enclosure.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "IOGroupID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "IOGroupID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "IOGroupName of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "IOGroupName[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Managed of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Managed[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Manufacturer of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Manufacturer[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Model of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Model[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OnlineCanisters of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OnlineCanisters[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OnlineFanModules of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OnlineFanModules[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OnlinePSUs of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OnlinePSUs[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.0[Enclosure.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.1[Enclosure.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PackageType of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PackageType[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ProductMTM of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ProductMTM[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RemovalConditions of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RemovalConditions[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SerialNumber of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SerialNumber[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Tag of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Tag[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TotalCanisters of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TotalCanisters[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TotalFanModules of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TotalFanModules[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TotalPSUs of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TotalPSUs[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Type of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Type[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Enclosure Status"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Mdisk Groups",
+                        "type": "TRAP",
+                        "key": "mdiskgrps.discovery",
+                        "delay": "0",
+                        "item_prototypes": [
+                            {
+                                "name": "ChildCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ChildCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ElementName of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ElementName[mdiskgrp.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ElementsShareSpace of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ElementsShareSpace[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ExtentSize of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ExtentSize[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1048576"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "InstanceID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "InstanceID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Name of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Name[mdiskgrp.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NativeStatus of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NativeStatus[mdiskgrp.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NumberOfBackendVolumes of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NumberOfBackendVolumes[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NumberOfStorageVolumes of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NumberOfStorageVolumes[mdiskgrp.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.0[mdiskgrp.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.1[mdiskgrp.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Overallocation of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Overallocation[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ParentPoolID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ParentPoolID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PoolID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PoolID[mdiskgrp.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Primordial of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Primordial[mdiskgrp.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RemainingManagedSpace of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RemainingManagedSpace[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SpaceLimitDetermination of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SpaceLimitDetermination[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SpaceLimit of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SpaceLimit[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TotalManagedSpace of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TotalManagedSpace[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Usage of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Usage[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "UsedCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "UsedCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "VirtualCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "VirtualCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Warning of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Warning[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisk Groups Status"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Mdisks",
+                        "type": "TRAP",
+                        "key": "mdisks.discovery",
+                        "delay": "0",
+                        "lifetime": "3d",
+                        "item_prototypes": [
+                            {
+                                "name": "Access of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Access[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "AdditionalAvailability 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "AdditionalAvailability.0[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "AdditionalAvailability 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "AdditionalAvailability.1[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Block Size of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "BlockSize[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Capacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Capacity[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ConsumableBlocks of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ConsumableBlocks[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Counts 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Counts.0[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Counts 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Counts.1[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DataOrganization of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DataOrganization[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DataRedundancy of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DataRedundancy[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DeltaReservation of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DeltaReservation[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DeviceID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DeviceID[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ElementName of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ElementName[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnabledDefault of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnabledDefault[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnabledState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnabledState[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ExtentStatus 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ExtentStatus.0[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ExtentStatus 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ExtentStatus.1[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "IsBasedOnUnderlyingRedundancy of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "IsBasedOnUnderlyingRedundancy[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Mode of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Mode[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NativeStatus of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NativeStatus[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NoSinglePointOfFailure of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NoSinglePointOfFailure[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NumberOfBlocks of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NumberOfBlocks[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.0[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.1[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PackageRedundancy of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PackageRedundancy[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PoolID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PoolID[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Poolname of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Poolname[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Primordial of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Primordial[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RequestedState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RequestedState[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SlotLocation of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SlotLocation[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TransitioningToState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TransitioningToState[mdisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Mdisks Status"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Systems",
+                        "type": "TRAP",
+                        "key": "systems.discovery",
+                        "delay": "0",
+                        "lifetime": "3d",
+                        "item_prototypes": [
+                            {
+                                "name": "AllocatedCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "AllocatedCapacity[System.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "AvailableCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "AvailableCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "BackendStorageCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "BackendStorageCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ClusterState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ClusterState[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "CodeLevel of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "CodeLevel[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{diff()}=1",
+                                        "name": "Code Level of {#SO_TYPE}.{#SO_NAME} has changed",
+                                        "priority": "AVERAGE"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ConfiguredAddress of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ConfiguredAddress[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ConnectionType of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ConnectionType[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ConsoleIP of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ConsoleIP[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ConsolePort of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ConsolePort[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DiscoveryStatus of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DiscoveryStatus[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "value_type": "FLOAT",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ElementName of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ElementName[System.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EMailContactAlternate of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EMailContactAlternate[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EMailContactLocation of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EMailContactLocation[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EMailContactPrimary of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EMailContactPrimary[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EMailContact of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EMailContact[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EMailInterval of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EMailInterval[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EMailReply of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EMailReply[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EMailServer of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EMailServer[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EmailSetting of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EmailSetting[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EMailState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EMailState[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EMailUserCount of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EMailUserCount[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnabledDefault of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnabledDefault[System.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnabledState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnabledState[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "FcPortSpeed of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "FcPortSpeed[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "GMInterClusterDelaySimulation of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "GMInterClusterDelaySimulation[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "GMIntraClusterDelaySimulation of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "GMIntraClusterDelaySimulation[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "GMLinkTolerance of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "GMLinkTolerance[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "iSCSIAuthMethod 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "iSCSIAuthMethod.0[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "iSCSIAuthMethod 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "iSCSIAuthMethod.1[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Locale of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Locale[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "MaxNumberOfNodes of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "MaxNumberOfNodes[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Name of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Name[System.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.0[System.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.1[System.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PoolCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PoolCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RequestedState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RequestedState[System.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RequiredMemory of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RequiredMemory[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "bytes",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ResetCapability of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ResetCapability[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SNMPCommunity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SNMPCommunity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SNMPServerIP of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SNMPServerIP[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SNMPSetting of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SNMPSetting[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "StatisticsFrequency of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "StatisticsFrequency[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "StatisticsStatus of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "StatisticsStatus[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TimeZone of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TimeZone[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Topology of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Topology[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TotalOverallocation of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TotalOverallocation[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TotalUsedCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TotalUsedCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TotalVdiskCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TotalVdiskCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TotalVdiskCopyCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TotalVdiskCopyCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TransitioningToState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TransitioningToState[System.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "VolumeProtectionTime of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "VolumeProtectionTime[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "VolumeProtection of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "VolumeProtection[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "System Status"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "VDisks",
+                        "type": "TRAP",
+                        "key": "vdisks.discovery",
+                        "delay": "0",
+                        "lifetime": "3d",
+                        "item_prototypes": [
+                            {
+                                "name": "AccessGranted of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "AccessGranted[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Access of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Access[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Block Size of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "BlockSize[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "CacheMode of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "CacheMode[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "CacheState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "CacheState[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Cluster of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Cluster[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ConsumableBlocks of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ConsumableBlocks[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Controlled of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Controlled[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "CopyCount of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "CopyCount[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DataOrganization of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DataOrganization[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DataRedundancy of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DataRedundancy[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DeltaReservation of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DeltaReservation[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "DeviceID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "DeviceID[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ElementName of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ElementName[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnabledDefault of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnabledDefault[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "EnabledState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "EnabledState[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ExtentStatus 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ExtentStatus.0[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ExtentStatus 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ExtentStatus.1[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "FlashCopyMapCount of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "FlashCopyMapCount[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "GroupID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "GroupID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "GroupName of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "GroupName[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Accumulated time for all I/O operations of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "IOTimeCounter[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "ms",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "SIMPLE_CHANGE",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "IsBasedOnUnderlyingRedundancy of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "IsBasedOnUnderlyingRedundancy[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "IsFormatted of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "IsFormatted[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "IsSpaceEfficient of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "IsSpaceEfficient[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Read rate of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "KBytesRead[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B/s",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    },
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Transfer rate of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "KBytesTransferred[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B/s",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    },
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
+                                        ]
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{avg(5m)}>1048576000",
+                                        "name": "Transfer rate of {#SO_TYPE}.{#SO_NAME} is exceeded 200 MB/s",
+                                        "priority": "AVERAGE"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Write rate of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "KBytesWritten[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B/s",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    },
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "LastAccessTime of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "LastAccessTime[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NameFormat of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NameFormat[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NameNamespace of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NameNamespace[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Name of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Name[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NativeStatus of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NativeStatus[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NoSinglePointOfFailure of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NoSinglePointOfFailure[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "NumberOfBlocks of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "NumberOfBlocks[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.0[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "OperationalStatus.1[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PackageRedundancy of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PackageRedundancy[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PoolID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PoolID[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PoolName of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PoolName[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "PreferredNode of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "PreferredNode[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Primordial of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Primordial[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RCChange of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RCChange[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Read Cache Hit IOPS of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ReadHitIOs[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Read IOPS of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ReadIOs[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Accumulated time for all read operations of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ReadIOTimeCounter[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "ms",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "SIMPLE_CHANGE",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RequestedState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "RequestedState[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SequentialAccess of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SequentialAccess[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SyncRate of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SyncRate[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SystemName of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "SystemName[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ThinlyProvisioned of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "ThinlyProvisioned[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "BOOL_TO_DECIMAL",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Total IOPS of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TotalIOs[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "TransitioningToState of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "TransitioningToState[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Type of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "Type[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "UncompressedUsedCapacity of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "UncompressedUsedCapacity[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "B",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "UniqueID of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "UniqueID[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "VolumeId of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "VolumeId[{#SO_TYPE}.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "VDisks Status"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Write Cache Hit IOPS of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "WriteHitIOs[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Write IOPS of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "WriteIOs[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Accumulated time for all write operations of {#SO_TYPE}.{#SO_NAME}",
+                                "type": "TRAP",
+                                "key": "WriteIOTimeCounter[VDisk.{#SO_NAME}]",
+                                "delay": "0",
+                                "units": "ms",
+                                "applications": [
+                                    {
+                                        "name": "Storage Perfomance"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "SIMPLE_CHANGE",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "value_maps": [
+            {
+                "name": "Pystormon Disk Drive Use",
+                "mappings": [
+                    {
+                        "value": "2",
+                        "newvalue": "Spare"
+                    },
+                    {
+                        "value": "4",
+                        "newvalue": "Member"
+                    }
+                ]
+            }
+        ]
+    }
+}

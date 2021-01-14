@@ -75,7 +75,7 @@ zabbix    776392  0.2  0.4 2049600 112064 ?      S    дек07  63:57 /usr/sbin/
 zabbix    776393  0.2  0.4 2049412 111836 ?      S    дек07  63:31 /usr/sbin/zabbix_server: trapper #5 [processed data in 0.000176 sec, waiting for connection]
 ```
 
-9) Import template Storage Pystormon.xml to Zabbix;
+9) Import template Storage Pystormon.xml or Storage Pystormon.json to Zabbix;
 
 10) Create your storage hosts in Zabbix and link template Storage Pystormon to them.
 In host configuration set parameters "Host name" and "IP address" for Agent Interface.
@@ -114,7 +114,7 @@ B) Run dockerrun.sh;
 ```
 
 12) Optionally, you can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
-and in template Storage Pystormon.xml. Storage CIM classes maps to Zabbix discoveries, and CIM class properties maps 
+and in template Storage Pystormon. Storage CIM classes maps to Zabbix discoveries, and CIM class properties maps 
 to Zabbix discoveries items.
 
 13) Also, optionally you can send exception alarms via slack hook to your slack channel. For it, set parameter slack_hook
