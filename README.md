@@ -8,13 +8,13 @@ Tested with IBM Storwize
 Requirements
 ============
 
-python >= 3.4
+python >= 3.6
 
 python module py-zabbix - for sending traps to zabbix
 
 python module pywbem (tested with version 0.12.0) - for connect and get information from storage through CIM/WBEM
 
-zabbix-server (tested with versions 3.4-4.4)
+zabbix-server (tested with versions 4.4-5.2)
 
 
 Installation
@@ -75,7 +75,8 @@ zabbix    776392  0.2  0.4 2049600 112064 ?      S    дек07  63:57 /usr/sbin/
 zabbix    776393  0.2  0.4 2049412 111836 ?      S    дек07  63:31 /usr/sbin/zabbix_server: trapper #5 [processed data in 0.000176 sec, waiting for connection]
 ```
 
-9) Import template Storage Pystormon.xml or Storage Pystormon.json to Zabbix;
+9) Import template Storage Pystormon.xml or Storage Pystormon.json to Zabbix, if use Zabbix 5.2,
+and Storage Pystormon 4.4.xml for Zabbix 4.4;
 
 10) Create your storage hosts in Zabbix and link template Storage Pystormon to them.
 In host configuration set parameters "Host name" and "IP address" for Agent Interface.
@@ -125,7 +126,7 @@ in conf.d/pystormon.conf. More details in https://api.slack.com/messaging/webhoo
 Tested
 ======
 Storwize v3700, v5010, v5030, v7000
-Zabbix 3.4, 4.0, 4.2, 4.4
+Zabbix 4.4, 5.2
 
 Related Links
 =============
