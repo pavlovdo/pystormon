@@ -1,7 +1,7 @@
 {
     "zabbix_export": {
         "version": "5.2",
-        "date": "2021-01-14T19:30:28Z",
+        "date": "2021-01-14T20:22:41Z",
         "groups": [
             {
                 "name": "Templates/Hardware"
@@ -865,6 +865,20 @@
                                     {
                                         "name": "Storage Perfomance"
                                     }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "CHANGE_PER_SECOND",
+                                        "parameters": [
+                                            ""
+                                        ]
+                                    },
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
+                                        ]
+                                    }
                                 ]
                             },
                             {
@@ -883,6 +897,12 @@
                                         "type": "CHANGE_PER_SECOND",
                                         "parameters": [
                                             ""
+                                        ]
+                                    },
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
                                         ]
                                     }
                                 ]
@@ -903,6 +923,12 @@
                                         "type": "CHANGE_PER_SECOND",
                                         "parameters": [
                                             ""
+                                        ]
+                                    },
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
                                         ]
                                     }
                                 ]
