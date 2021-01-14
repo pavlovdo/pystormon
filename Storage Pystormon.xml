@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>4.4</version>
-    <date>2020-12-07T11:27:34Z</date>
+    <version>5.2</version>
+    <date>2021-01-14T19:30:30Z</date>
     <groups>
         <group>
             <name>Templates/Hardware</name>
@@ -9,11 +9,11 @@
     </groups>
     <templates>
         <template>
-            <template>Template Storage Pystormon</template>
-            <name>Template Storage Pystormon</name>
+            <template>Storage Pystormon</template>
+            <name>Storage Pystormon</name>
             <templates>
                 <template>
-                    <name>Template Module ICMP Ping</name>
+                    <name>ICMP Ping</name>
                 </template>
             </templates>
             <groups>
@@ -27,6 +27,9 @@
                 </application>
                 <application>
                     <name>Disk Drives Status</name>
+                </application>
+                <application>
+                    <name>Enclosure Status</name>
                 </application>
                 <application>
                     <name>Mdisk Groups Status</name>
@@ -111,7 +114,9 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>1024</params>
+                                    <parameters>
+                                        <parameter>1024</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -173,7 +178,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -201,9 +208,24 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>ElementName of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>ElementName[Array.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>Arrays Status</name>
+                                </application>
+                            </applications>
                         </item_prototype>
                         <item_prototype>
                             <name>EnabledDefault of {#SO_TYPE}.{#SO_NAME}</name>
@@ -240,7 +262,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -290,7 +314,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -307,7 +333,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -315,6 +343,17 @@
                             <name>Mode of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
                             <key>Mode[Array.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>Arrays Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>NativeStatus of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>NativeStatus[{#SO_TYPE}.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
@@ -335,7 +374,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -343,17 +384,6 @@
                             <name>NumberOfBlocks of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
                             <key>NumberOfBlocks[Array.{#SO_NAME}]</key>
-                            <delay>0</delay>
-                            <applications>
-                                <application>
-                                    <name>Arrays Status</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>NumberOfStorageVolumes of {#SO_TYPE}.{#SO_NAME}</name>
-                            <type>TRAP</type>
-                            <key>NumberOfStorageVolumes[Array.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
@@ -396,7 +426,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -474,7 +506,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -483,7 +517,6 @@
                             <type>TRAP</type>
                             <key>RaidLevel.0[{#SO_TYPE}.{#SO_NAME}]</key>
                             <delay>0</delay>
-                            <units>RaidLevel.0[{#SO_TYPE}.{#SO_NAME}]</units>
                             <applications>
                                 <application>
                                     <name>Arrays Status</name>
@@ -547,7 +580,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -565,7 +600,9 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>1024</params>
+                                    <parameters>
+                                        <parameter>1024</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -582,7 +619,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -599,7 +638,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -808,7 +849,9 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -838,7 +881,9 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -856,7 +901,9 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -896,9 +943,33 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>OperationalStatus of {#SO_TYPE}.{#SO_NAME}</name>
+                            <name>Name of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>OperationalStatus[DiskDrive.{#SO_NAME}]</key>
+                            <key>Name[DiskDrive.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>Disk Drives Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>OperationalStatus.0[DiskDrive.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>Disk Drives Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>OperationalStatus.1[DiskDrive.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
@@ -974,7 +1045,9 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -992,7 +1065,9 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1060,7 +1135,9 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1098,6 +1175,9 @@
                                     <name>Disk Drives Status</name>
                                 </application>
                             </applications>
+                            <valuemap>
+                                <name>Pystormon Disk Drive Use</name>
+                            </valuemap>
                         </item_prototype>
                         <item_prototype>
                             <name>VendorID of {#SO_TYPE}.{#SO_NAME}</name>
@@ -1125,7 +1205,9 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1143,7 +1225,9 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1163,7 +1247,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1174,7 +1258,20 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>ElementName of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>ElementName[Enclosure.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1185,7 +1282,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1196,7 +1293,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1207,7 +1304,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1220,7 +1317,7 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1231,7 +1328,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1244,7 +1341,7 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1257,7 +1354,7 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1268,7 +1365,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1279,7 +1376,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1290,18 +1387,29 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>OperationalStatus of {#SO_TYPE}.{#SO_NAME}</name>
+                            <name>OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>OperationalStatus[Enclosure.{#SO_NAME}]</key>
+                            <key>OperationalStatus.0[Enclosure.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>OperationalStatus.1[Enclosure.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1312,7 +1420,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1325,7 +1433,7 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1336,7 +1444,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1349,7 +1457,7 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1362,7 +1470,7 @@
                             <value_type>CHAR</value_type>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1373,7 +1481,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1384,7 +1492,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1395,7 +1503,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1406,7 +1514,7 @@
                             <delay>0</delay>
                             <applications>
                                 <application>
-                                    <name>Status</name>
+                                    <name>Enclosure Status</name>
                                 </application>
                             </applications>
                         </item_prototype>
@@ -1431,6 +1539,19 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
+                            <name>ElementName of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>ElementName[mdiskgrp.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>Mdisk Groups Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
                             <name>ElementsShareSpace of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
                             <key>ElementsShareSpace[{#SO_TYPE}.{#SO_NAME}]</key>
@@ -1443,7 +1564,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1461,7 +1584,9 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>1048576</params>
+                                    <parameters>
+                                        <parameter>1048576</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1514,9 +1639,31 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>OperationalStatus of {#SO_TYPE}.{#SO_NAME}</name>
+                            <name>NumberOfStorageVolumes of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>OperationalStatus[mdiskgrp.{#SO_NAME}]</key>
+                            <key>NumberOfStorageVolumes[mdiskgrp.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>Mdisk Groups Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>OperationalStatus.0[mdiskgrp.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>Mdisk Groups Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>OperationalStatus.1[mdiskgrp.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
@@ -1572,7 +1719,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1604,6 +1753,7 @@
                             <type>TRAP</type>
                             <key>SpaceLimit[{#SO_TYPE}.{#SO_NAME}]</key>
                             <delay>0</delay>
+                            <units>B</units>
                             <applications>
                                 <application>
                                     <name>Mdisk Groups Status</name>
@@ -1724,7 +1874,9 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>1024</params>
+                                    <parameters>
+                                        <parameter>1024</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1818,6 +1970,19 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
+                            <name>ElementName of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>ElementName[mdisk.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>Mdisks Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
                             <name>EnabledDefault of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
                             <key>EnabledDefault[mdisk.{#SO_NAME}]</key>
@@ -1874,7 +2039,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -1899,6 +2066,25 @@
                                     <name>Mdisks Status</name>
                                 </application>
                             </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>NoSinglePointOfFailure of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>NoSinglePointOfFailure[mdisk.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>Mdisks Status</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>BOOL_TO_DECIMAL</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
                         </item_prototype>
                         <item_prototype>
                             <name>NumberOfBlocks of {#SO_TYPE}.{#SO_NAME}</name>
@@ -1983,7 +2169,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2090,6 +2278,13 @@
                                     <name>System Status</name>
                                 </application>
                             </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{diff()}=1</expression>
+                                    <name>Code Level of {#SO_TYPE}.{#SO_NAME} has changed</name>
+                                    <priority>AVERAGE</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>ConfiguredAddress of {#SO_TYPE}.{#SO_NAME}</name>
@@ -2147,6 +2342,19 @@
                             <key>DiscoveryStatus[{#SO_TYPE}.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>System Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>ElementName of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>ElementName[System.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
                             <applications>
                                 <application>
                                     <name>System Status</name>
@@ -2355,9 +2563,20 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>iSCSIAuthMethod of {#SO_TYPE}.{#SO_NAME}</name>
+                            <name>iSCSIAuthMethod 0 of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>iSCSIAuthMethod[{#SO_TYPE}.{#SO_NAME}]</key>
+                            <key>iSCSIAuthMethod.0[{#SO_TYPE}.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>System Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>iSCSIAuthMethod 1 of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>iSCSIAuthMethod.1[{#SO_TYPE}.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
@@ -2403,9 +2622,20 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>OperationalStatus of {#SO_TYPE}.{#SO_NAME}</name>
+                            <name>OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>OperationalStatus[System.{#SO_NAME}]</key>
+                            <key>OperationalStatus.0[System.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>System Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>OperationalStatus.1[System.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
@@ -2522,7 +2752,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2640,6 +2872,25 @@
                     <lifetime>3d</lifetime>
                     <item_prototypes>
                         <item_prototype>
+                            <name>AccessGranted of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>AccessGranted[{#SO_TYPE}.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>VDisks Status</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>BOOL_TO_DECIMAL</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
                             <name>Access of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
                             <key>Access[VDisk.{#SO_NAME}]</key>
@@ -2664,7 +2915,9 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>1024</params>
+                                    <parameters>
+                                        <parameter>1024</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2727,7 +2980,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2787,6 +3042,19 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
+                            <name>ElementName of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>ElementName[VDisk.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>VDisks Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
                             <name>EnabledDefault of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
                             <key>EnabledDefault[VDisk.{#SO_NAME}]</key>
@@ -2809,9 +3077,20 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>ExtentStatus of {#SO_TYPE}.{#SO_NAME}</name>
+                            <name>ExtentStatus 0 of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>ExtentStatus[VDisk.{#SO_NAME}]</key>
+                            <key>ExtentStatus.0[VDisk.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>VDisks Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>ExtentStatus 1 of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>ExtentStatus.1[VDisk.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
@@ -2870,7 +3149,9 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2887,7 +3168,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2904,7 +3187,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2921,7 +3206,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2939,11 +3226,15 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>1024</params>
+                                    <parameters>
+                                        <parameter>1024</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -2961,11 +3252,15 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>1024</params>
+                                    <parameters>
+                                        <parameter>1024</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                             <trigger_prototypes>
@@ -2990,11 +3285,15 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>1024</params>
+                                    <parameters>
+                                        <parameter>1024</parameter>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3070,7 +3369,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3086,9 +3387,20 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>OperationalStatus of {#SO_TYPE}.{#SO_NAME}</name>
+                            <name>OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>OperationalStatus[VDisk.{#SO_NAME}]</key>
+                            <key>OperationalStatus.0[VDisk.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>VDisks Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>OperationalStatus 1 of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>OperationalStatus.1[VDisk.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
@@ -3121,9 +3433,9 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>Poolname of {#SO_TYPE}.{#SO_NAME}</name>
+                            <name>PoolName of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
-                            <key>Poolname[VDisk.{#SO_NAME}]</key>
+                            <key>PoolName[VDisk.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <trends>0</trends>
                             <value_type>CHAR</value_type>
@@ -3159,7 +3471,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3176,7 +3490,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3193,7 +3509,9 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3210,7 +3528,9 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3228,7 +3548,9 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3256,7 +3578,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3297,7 +3621,9 @@
                             <preprocessing>
                                 <step>
                                     <type>BOOL_TO_DECIMAL</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3314,7 +3640,9 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3322,6 +3650,17 @@
                             <name>TransitioningToState of {#SO_TYPE}.{#SO_NAME}</name>
                             <type>TRAP</type>
                             <key>TransitioningToState[VDisk.{#SO_NAME}]</key>
+                            <delay>0</delay>
+                            <applications>
+                                <application>
+                                    <name>VDisks Status</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Type of {#SO_TYPE}.{#SO_NAME}</name>
+                            <type>TRAP</type>
+                            <key>Type[VDisk.{#SO_NAME}]</key>
                             <delay>0</delay>
                             <applications>
                                 <application>
@@ -3378,7 +3717,9 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3395,7 +3736,9 @@
                             <preprocessing>
                                 <step>
                                     <type>CHANGE_PER_SECOND</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3413,7 +3756,9 @@
                             <preprocessing>
                                 <step>
                                     <type>SIMPLE_CHANGE</type>
-                                    <params/>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
                                 </step>
                             </preprocessing>
                         </item_prototype>
@@ -3422,4 +3767,19 @@
             </discovery_rules>
         </template>
     </templates>
+    <value_maps>
+        <value_map>
+            <name>Pystormon Disk Drive Use</name>
+            <mappings>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>Spare</newvalue>
+                </mapping>
+                <mapping>
+                    <value>4</value>
+                    <newvalue>Member</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
 </zabbix_export>
