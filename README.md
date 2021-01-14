@@ -76,7 +76,7 @@ zabbix    776393  0.2  0.4 2049412 111836 ?      S    дек07  63:31 /usr/sbin/
 ```
 
 9) Import template Storage Pystormon.xml or Storage Pystormon.json to Zabbix, if use Zabbix 5.2,
-and Storage Pystormon 4.4.xml for Zabbix 4.4;
+and Storage Pystormon 4.4.xml (no more support) for Zabbix 4.4;
 
 10) Create your storage hosts in Zabbix and link template Storage Pystormon to them.
 In host configuration set parameters "Host name" and "IP address" for Agent Interface.
