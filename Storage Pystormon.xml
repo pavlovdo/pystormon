@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.2</version>
-    <date>2021-01-14T20:22:43Z</date>
+    <date>2021-01-15T09:11:15Z</date>
     <groups>
         <group>
             <name>Templates/Hardware</name>
@@ -226,6 +226,14 @@
                                     <name>Arrays Status</name>
                                 </application>
                             </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{nodata(1d)}=0 and
+{nodata(1h)}=1</expression>
+                                    <name>No data for an hour from {#SO_TYPE}.{#SO_NAME}</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>EnabledDefault of {#SO_TYPE}.{#SO_NAME}</name>
@@ -880,6 +888,13 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{avg(5m)}&gt;{$DISKDRIVE_MAX_READ_RATE_MBS}*1048576</expression>
+                                    <name>Read rate of {#SO_TYPE}.{#SO_NAME} exceeds {$DISKDRIVE_MAX_READ_RATE_MBS} MB/s for 5 minutes</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>Transfer rate of {#SO_TYPE}.{#SO_NAME}</name>
@@ -906,6 +921,13 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{avg(5m)}&gt;{$DISKDRIVE_MAX_TRANSFER_RATE_MBS}*1048576</expression>
+                                    <name>Transfer rate of {#SO_TYPE}.{#SO_NAME} exceeds {$DISKDRIVE_MAX_TRANSFER_RATE_MBS} MB/s for 5 minutes</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>Write rate of {#SO_TYPE}.{#SO_NAME}</name>
@@ -932,6 +954,13 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{avg(5m)}&gt;{$DISKDRIVE_MAX_WRITE_RATE_MBS}*1048576</expression>
+                                    <name>Write rate of {#SO_TYPE}.{#SO_NAME} exceeds {$DISKDRIVE_MAX_WRITE_RATE_MBS} MB/s for 5 minutes</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>MdiskID of {#SO_TYPE}.{#SO_NAME}</name>
@@ -980,6 +1009,13 @@
                                     <name>Disk Drives Status</name>
                                 </application>
                             </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{nodata(1d)}=0 and {nodata(1h)}=1</expression>
+                                    <name>No data for an hour from {#SO_TYPE}.{#SO_NAME}</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>OperationalStatus 0 of {#SO_TYPE}.{#SO_NAME}</name>
@@ -1300,6 +1336,14 @@
                                     <name>Enclosure Status</name>
                                 </application>
                             </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{nodata(1d)}=0 and
+{nodata(1h)}=1</expression>
+                                    <name>No data for an hour from {#SO_TYPE}.{#SO_NAME}</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>EnclosureStatus of {#SO_TYPE}.{#SO_NAME}</name>
@@ -1576,6 +1620,14 @@
                                     <name>Mdisk Groups Status</name>
                                 </application>
                             </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{nodata(1d)}=0 and
+{nodata(1h)}=1</expression>
+                                    <name>No data for an hour from {#SO_TYPE}.{#SO_NAME}</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>ElementsShareSpace of {#SO_TYPE}.{#SO_NAME}</name>
@@ -2007,6 +2059,14 @@
                                     <name>Mdisks Status</name>
                                 </application>
                             </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{nodata(1d)}=0 and
+{nodata(1h)}=1</expression>
+                                    <name>No data for an hour from {#SO_TYPE}.{#SO_NAME}</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>EnabledDefault of {#SO_TYPE}.{#SO_NAME}</name>
@@ -2386,6 +2446,14 @@
                                     <name>System Status</name>
                                 </application>
                             </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{nodata(1d)}=0 and
+{nodata(1h)}=1</expression>
+                                    <name>No data for an hour from {#SO_TYPE}.{#SO_NAME}</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>EMailContactAlternate of {#SO_TYPE}.{#SO_NAME}</name>
@@ -3079,6 +3147,14 @@
                                     <name>VDisks Status</name>
                                 </application>
                             </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{nodata(1d)}=0 and
+{nodata(1h)}=1</expression>
+                                    <name>No data for an hour from {#SO_TYPE}.{#SO_NAME}</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>EnabledDefault of {#SO_TYPE}.{#SO_NAME}</name>
@@ -3263,6 +3339,13 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{avg(5m)}&gt;{$VDISK_MAX_READ_RATE_MBS}*1048576</expression>
+                                    <name>Read rate of {#SO_TYPE}.{#SO_NAME} exceeds {$VDISK_MAX_READ_RATE_MBS} MB/s for 5 minutes</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>Transfer rate of {#SO_TYPE}.{#SO_NAME}</name>
@@ -3291,9 +3374,9 @@
                             </preprocessing>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{avg(5m)}&gt;1048576000</expression>
-                                    <name>Transfer rate of {#SO_TYPE}.{#SO_NAME} is exceeded 200 MB/s</name>
-                                    <priority>AVERAGE</priority>
+                                    <expression>{avg(5m)}&gt;{$VDISK_MAX_TRANSFER_RATE_MBS}*1048576</expression>
+                                    <name>Transfer rate of {#SO_TYPE}.{#SO_NAME} exceeds {$VDISK_MAX_TRANSFER_RATE_MBS} MB/s for 5 minutes</name>
+                                    <priority>WARNING</priority>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -3322,6 +3405,13 @@
                                     </parameters>
                                 </step>
                             </preprocessing>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{avg(5m)}&gt;{$VDISK_MAX_WRITE_RATE_MBS}*1048576</expression>
+                                    <name>Write rate of {#SO_TYPE}.{#SO_NAME} exceeds {$VDISK_MAX_WRITE_RATE_MBS} MB/s for 5 minutes</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>LastAccessTime of {#SO_TYPE}.{#SO_NAME}</name>
@@ -3791,6 +3881,32 @@
                     </item_prototypes>
                 </discovery_rule>
             </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$DISKDRIVE_MAX_READ_RATE_MBS}</macro>
+                    <value>100</value>
+                </macro>
+                <macro>
+                    <macro>{$DISKDRIVE_MAX_TRANSFER_RATE_MBS}</macro>
+                    <value>100</value>
+                </macro>
+                <macro>
+                    <macro>{$DISKDRIVE_MAX_WRITE_RATE_MBS}</macro>
+                    <value>50</value>
+                </macro>
+                <macro>
+                    <macro>{$VDISK_MAX_READ_RATE_MBS}</macro>
+                    <value>500</value>
+                </macro>
+                <macro>
+                    <macro>{$VDISK_MAX_TRANSFER_RATE_MBS}</macro>
+                    <value>500</value>
+                </macro>
+                <macro>
+                    <macro>{$VDISK_MAX_WRITE_RATE_MBS}</macro>
+                    <value>500</value>
+                </macro>
+            </macros>
         </template>
     </templates>
     <value_maps>

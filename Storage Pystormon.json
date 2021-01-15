@@ -1,7 +1,7 @@
 {
     "zabbix_export": {
         "version": "5.2",
-        "date": "2021-01-14T20:22:41Z",
+        "date": "2021-01-15T09:09:25Z",
         "groups": [
             {
                 "name": "Templates/Hardware"
@@ -224,6 +224,13 @@
                                 "applications": [
                                     {
                                         "name": "Arrays Status"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{nodata(1d)}=0 and\n{nodata(1h)}=1",
+                                        "name": "No data for an hour from {#SO_TYPE}.{#SO_NAME}",
+                                        "priority": "WARNING"
                                     }
                                 ]
                             },
@@ -879,6 +886,13 @@
                                             "1024"
                                         ]
                                     }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{avg(5m)}>{$DISKDRIVE_MAX_READ_RATE_MBS}*1048576",
+                                        "name": "Read rate of {#SO_TYPE}.{#SO_NAME} exceeds {$DISKDRIVE_MAX_READ_RATE_MBS} MB/s for 5 minutes",
+                                        "priority": "WARNING"
+                                    }
                                 ]
                             },
                             {
@@ -905,6 +919,13 @@
                                             "1024"
                                         ]
                                     }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{avg(5m)}>{$DISKDRIVE_MAX_TRANSFER_RATE_MBS}*1048576",
+                                        "name": "Transfer rate of {#SO_TYPE}.{#SO_NAME} exceeds {$DISKDRIVE_MAX_TRANSFER_RATE_MBS} MB/s for 5 minutes",
+                                        "priority": "WARNING"
+                                    }
                                 ]
                             },
                             {
@@ -930,6 +951,13 @@
                                         "parameters": [
                                             "1024"
                                         ]
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{avg(5m)}>{$DISKDRIVE_MAX_WRITE_RATE_MBS}*1048576",
+                                        "name": "Write rate of {#SO_TYPE}.{#SO_NAME} exceeds {$DISKDRIVE_MAX_WRITE_RATE_MBS} MB/s for 5 minutes",
+                                        "priority": "WARNING"
                                     }
                                 ]
                             },
@@ -978,6 +1006,13 @@
                                 "applications": [
                                     {
                                         "name": "Disk Drives Status"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{nodata(1d)}=0 and {nodata(1h)}=1",
+                                        "name": "No data for an hour from {#SO_TYPE}.{#SO_NAME}",
+                                        "priority": "WARNING"
                                     }
                                 ]
                             },
@@ -1299,6 +1334,13 @@
                                     {
                                         "name": "Enclosure Status"
                                     }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{nodata(1d)}=0 and\n{nodata(1h)}=1",
+                                        "name": "No data for an hour from {#SO_TYPE}.{#SO_NAME}",
+                                        "priority": "WARNING"
+                                    }
                                 ]
                             },
                             {
@@ -1574,6 +1616,13 @@
                                 "applications": [
                                     {
                                         "name": "Mdisk Groups Status"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{nodata(1d)}=0 and\n{nodata(1h)}=1",
+                                        "name": "No data for an hour from {#SO_TYPE}.{#SO_NAME}",
+                                        "priority": "WARNING"
                                     }
                                 ]
                             },
@@ -2006,6 +2055,13 @@
                                     {
                                         "name": "Mdisks Status"
                                     }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{nodata(1d)}=0 and\n{nodata(1h)}=1",
+                                        "name": "No data for an hour from {#SO_TYPE}.{#SO_NAME}",
+                                        "priority": "WARNING"
+                                    }
                                 ]
                             },
                             {
@@ -2384,6 +2440,13 @@
                                 "applications": [
                                     {
                                         "name": "System Status"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{nodata(1d)}=0 and\n{nodata(1h)}=1",
+                                        "name": "No data for an hour from {#SO_TYPE}.{#SO_NAME}",
+                                        "priority": "WARNING"
                                     }
                                 ]
                             },
@@ -3078,6 +3141,13 @@
                                     {
                                         "name": "VDisks Status"
                                     }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{nodata(1d)}=0 and\n{nodata(1h)}=1",
+                                        "name": "No data for an hour from {#SO_TYPE}.{#SO_NAME}",
+                                        "priority": "WARNING"
+                                    }
                                 ]
                             },
                             {
@@ -3262,6 +3332,13 @@
                                             "1024"
                                         ]
                                     }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{avg(5m)}>{$VDISK_MAX_READ_RATE_MBS}*1048576",
+                                        "name": "Read rate of {#SO_TYPE}.{#SO_NAME} exceeds {$VDISK_MAX_READ_RATE_MBS} MB/s for 5 minutes",
+                                        "priority": "WARNING"
+                                    }
                                 ]
                             },
                             {
@@ -3291,9 +3368,9 @@
                                 ],
                                 "trigger_prototypes": [
                                     {
-                                        "expression": "{avg(5m)}>1048576000",
-                                        "name": "Transfer rate of {#SO_TYPE}.{#SO_NAME} is exceeded 200 MB/s",
-                                        "priority": "AVERAGE"
+                                        "expression": "{avg(5m)}>{$VDISK_MAX_TRANSFER_RATE_MBS}*1048576",
+                                        "name": "Transfer rate of {#SO_TYPE}.{#SO_NAME} exceeds {$VDISK_MAX_TRANSFER_RATE_MBS} MB/s for 5 minutes",
+                                        "priority": "WARNING"
                                     }
                                 ]
                             },
@@ -3320,6 +3397,13 @@
                                         "parameters": [
                                             "1024"
                                         ]
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{avg(5m)}>{$VDISK_MAX_WRITE_RATE_MBS}*1048576",
+                                        "name": "Write rate of {#SO_TYPE}.{#SO_NAME} exceeds {$VDISK_MAX_WRITE_RATE_MBS} MB/s for 5 minutes",
+                                        "priority": "WARNING"
                                     }
                                 ]
                             },
@@ -3789,6 +3873,32 @@
                                 ]
                             }
                         ]
+                    }
+                ],
+                "macros": [
+                    {
+                        "macro": "{$DISKDRIVE_MAX_READ_RATE_MBS}",
+                        "value": "100"
+                    },
+                    {
+                        "macro": "{$DISKDRIVE_MAX_TRANSFER_RATE_MBS}",
+                        "value": "100"
+                    },
+                    {
+                        "macro": "{$DISKDRIVE_MAX_WRITE_RATE_MBS}",
+                        "value": "50"
+                    },
+                    {
+                        "macro": "{$VDISK_MAX_READ_RATE_MBS}",
+                        "value": "500"
+                    },
+                    {
+                        "macro": "{$VDISK_MAX_TRANSFER_RATE_MBS}",
+                        "value": "500"
+                    },
+                    {
+                        "macro": "{$VDISK_MAX_WRITE_RATE_MBS}",
+                        "value": "500"
                     }
                 ]
             }

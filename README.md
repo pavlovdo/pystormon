@@ -118,7 +118,11 @@ B) Run dockerrun.sh;
 and in template Storage Pystormon. Storage CIM classes maps to Zabbix discoveries, and CIM class properties maps 
 to Zabbix discoveries items.
 
-13) Also, optionally you can send exception alarms via slack hook to your slack channel. For it, set parameter slack_hook
+
+13) Optionally, you can change perfomance macros values in template Storape Pystormon (for Zabbix 5.2 templates);
+
+
+14) Also, optionally you can send exception alarms via slack hook to your slack channel. For it, set parameter slack_hook
 in conf.d/pystormon.conf. More details in https://api.slack.com/messaging/webhooks
 
 
