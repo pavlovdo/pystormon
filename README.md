@@ -114,17 +114,27 @@ B) Run dockerrun.sh;
 ./dockerrun.sh
 ```
 
-12) Optionally, you can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
-and in template Storage Pystormon. Storage CIM classes maps to Zabbix discoveries, and CIM class properties maps 
+
+Notes
+======
+1) You can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
+and in template Storage Pystormon. Storage CIM classes maps to Zabbix discoveries, and CIM class properties maps
 to Zabbix discoveries items.
 
 
-13) Optionally, you can change perfomance macros values in template Storape Pystormon (for Zabbix 5.2 templates);
+2) You can change perfomance macros values in template Storape Pystormon (for Zabbix 5.2 templates);
 
 
-14) Also, optionally you can send exception alarms via slack hook to your slack channel. For it, set parameter slack_hook
-in conf.d/pystormon.conf. More details in https://api.slack.com/messaging/webhooks
+3) For send exception alarms via slack hook to your slack channel, set parameter slack_hook in conf.d/pystormon.conf.
+More details in https://api.slack.com/messaging/webhooks
 
+
+4) You can print all names/values from storage cim classes, via script storage_cim_map.json. It get CIM classes from 
+storage_cim_map.json and print all names/values for its.
+
+
+5) If you start storage_cim_print.py and get empty values for some classes, for example classes IBMTSSVC_StorageVolume, IBMTSSVC_StorageVolumeStatistics, 
+check that you create corresponding objects (VDisks in our example) on your storage;
 
 
 Tested
