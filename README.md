@@ -117,7 +117,7 @@ B) Run dockerrun.sh;
 
 Notes
 ======
-1) You can add or remove monitoring your storage cim classes and properties in file storage_cim_map.json
+1) You can add or remove monitoring of your storage cim classes and properties in file storage_cim_map.json
 and in template Storage Pystormon. Storage CIM classes maps to Zabbix discoveries, and CIM class properties maps
 to Zabbix discoveries items.
 
@@ -129,7 +129,7 @@ to Zabbix discoveries items.
 More details in https://api.slack.com/messaging/webhooks
 
 
-4) You can print all names/values from storage cim classes, via script storage_cim_map.json. It get CIM classes from 
+4) You can print all names/values from storage CIM classes, via script storage_cim_map.json. It get CIM classes from 
 storage_cim_map.json and print all names/values for its.
 
 
