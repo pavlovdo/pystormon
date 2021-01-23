@@ -8,13 +8,13 @@ Tested with IBM Storwize
 Requirements
 ============
 
-python >= 3.6
+1) python >= 3.6
 
-python module py-zabbix - for sending traps to zabbix
+2) python module pywbem: connect and get information from storage via CIM/WBEM
 
-python module pywbem (tested with version 0.12.0) - for connect and get information from storage through CIM/WBEM
+3) zabbix-server (tested with versions 4.4-5.2)
 
-zabbix-server (tested with versions 4.4-5.2)
+4) python module py-zabbix: sending traps to zabbix
 
 
 Installation
@@ -146,10 +146,10 @@ Related Links
 =============
 http://pywbem.github.io/pywbem/
 
-https://github.com/adubkov/py-zabbix
-
 https://www.snia.org/forums/smi/knowledge/smis-getting-started/smi_architecture
 
 https://www.ibm.com/support/knowledgecenter/STHGUJ_8.3.1/com.ibm.storwize.tb5.831.doc/svc_cim_main.html
+
+https://github.com/adubkov/py-zabbix
 
 https://api.slack.com/messaging/webhooks
