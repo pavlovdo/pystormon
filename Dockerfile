@@ -1,13 +1,15 @@
 FROM centos:latest
 LABEL maintainer="Denis O. Pavlov pavlovdo@gmail.com"
 
+ARG project
+
 RUN yum update -y && yum install -y \ 
     cronie \
     epel-release \ 
     python36
 
-COPY *.py requirements.txt /etc/zabbix/externalscripts/pystormon/
-WORKDIR /etc/zabbix/externalscripts/pystormon
+COPY *.py requirements.txt /etc/zabbix/externalscripts/${project}/
+WORKDIR /etc/zabbix/externalscripts/${project}
 
 RUN pip3.6 install -r requirements.txt 
 

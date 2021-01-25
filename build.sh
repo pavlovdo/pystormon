@@ -1,8 +1,8 @@
 #!/bin/bash
 
 readonly PROJECT=pystormon
-readonly CONTAINER_OS=centos
-readonly CONTAINER_OLD_ID=$(docker ps -q --filter ancestor="$CONTAINER_OS":"$PROJECT")
+readonly CONTAINER_OLD=$(docker ps -q --all --filter name="$PROJECT")
 
-docker stop "$CONTAINER_OLD_ID"
-docker build -t "$CONTAINER_OS":"$PROJECT" .
+docker stop "$CONTAINER_OLD"
+docker rm "$CONTAINER_OLD"
+docker build --tag "$PROJECT" --build-arg project="$PROJECT" .

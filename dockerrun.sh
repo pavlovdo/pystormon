@@ -2,9 +2,8 @@
 
 readonly PROJECT=pystormon
 readonly CONFIG_DIR=/etc/zabbix/externalscripts/$PROJECT/conf.d
-readonly CONTAINER_OS=centos
 
-message="\nRunning of container from image $CONTAINER_OS:$PROJECT with mounting $CONFIG_DIR':'$CONFIG_DIR':ro"
+message="\nRunning of container from image $PROJECT with name $PROJECT and mounting $CONFIG_DIR':'$CONFIG_DIR':ro"
 
-docker run -d -t --restart=always -v "$CONFIG_DIR":"$CONFIG_DIR":ro "$CONTAINER_OS":"$PROJECT"
+docker run --detach --tty --name "$PROJECT" --restart=always --volume "$CONFIG_DIR":"$CONFIG_DIR":ro "$PROJECT"
 echo -e "${message}"

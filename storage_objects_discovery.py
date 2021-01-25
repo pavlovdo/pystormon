@@ -3,7 +3,7 @@
 #
 # IBM Storwize objects discovery for Zabbix
 #
-# 2020 Denis Pavlov
+# 2016-2020 Denis Pavlov
 #
 # Discover storage objects from Storwize including physical and logical disks, via CIM/WBEM and sends it to Zabbix Server via Zabbix Sender API
 #
@@ -116,9 +116,11 @@ def main():
 
             # trying send data to zabbix
             try:
-                zabbix_send_status = ZabbixSender(nd_parameters['zabbix_server']).send(packet)
+                zabbix_send_status = ZabbixSender(
+                    nd_parameters['zabbix_server']).send(packet)
                 if printing:
-                    print('Status of sending data to zabbix:\n', zabbix_send_status)                
+                    print('Status of sending data to zabbix:\n',
+                          zabbix_send_status)
             except ConnectionRefusedError as error:
                 if nd_parameters['slack_hook']:
                     slack_post(nd_parameters['slack_hook'],
