@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# Python module for send alarms about exceptions to slack channel
 
 def slack_post(slack_hook, message, hostname, icon_emoji=':snake:'):
 
