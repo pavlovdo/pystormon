@@ -32,8 +32,8 @@ startstats -interval 1
 3) Clone pystormon repo to directory /etc/zabbix/externalscripts of monitoring server:
 ```
 sudo mkdir -p /etc/zabbix/externalscripts
-cd /etc/zabbix/externalscripts
-sudo git clone https://github.com/pavlovdo/pystormon
+sudo git clone https://github.com/pavlovdo/pystormon /etc/zabbix/externalscripts/pystormon
+cd /etc/zabbix/externalscripts/pystormon
 ```
 
 4) A) Check execute permissions for scripts:
