@@ -13,7 +13,7 @@
             <name>Storage Pystormon</name>
             <templates>
                 <template>
-                    <name>ICMP Ping</name>
+                    <name>Template Module ICMP Ping</name>
                 </template>
             </templates>
             <groups>
