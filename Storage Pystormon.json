@@ -13,7 +13,7 @@
                 "name": "Storage Pystormon",
                 "templates": [
                     {
-                        "name": "ICMP Ping"
+                        "name": "Template Module ICMP Ping"
                     }
                 ],
                 "groups": [
