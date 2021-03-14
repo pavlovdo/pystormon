@@ -33,7 +33,7 @@ printing = eval(sd_parameters['printing'])
 
 # open config file with list of monitored storages
 device_list_file = open(nd_parameters['device_file'])
-device_list_lines= device_list_file.readlines()
+device_list_lines = device_list_file.readlines()
 
 # form dictionary of matching storage concepts and cim properties
 # more details in https://www.ibm.com/support/knowledgecenter/STHGUJ_8.3.1/com.ibm.storwize.v5000.831.doc/svc_conceptsmaptocimconcepts_3skacv.html
