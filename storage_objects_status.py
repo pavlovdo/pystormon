@@ -72,9 +72,10 @@ def main():
 
     # open config file with list of monitored storages
     device_list_file = open(nd_parameters['device_file'])
+    device_list_lines = device_list_file.readlines()
 
     # unpack storage list to variables
-    for device_line in device_list_file:
+    for device_line in device_list_lines:
         device_type, device_name, device_ip = device_line.split(':')
 
         # connect to storage via WBEM, get conn object
