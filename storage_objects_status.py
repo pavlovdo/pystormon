@@ -123,8 +123,7 @@ def main():
                 # get status for each parameter for each storage object
                 for storage_object in storage_objects:
                     for so_parameter in storage_objects[storage_object]:
-                        trapper_key = (so_parameter + '[' + storage_concept
-                                       + '.' + storage_object + ']')
+                        trapper_key = f'{so_parameter}[{storage_concept}.{storage_object}]'
                         trapper_value = storage_objects[storage_object][so_parameter]
 
                         # form list of data for sending to zabbix

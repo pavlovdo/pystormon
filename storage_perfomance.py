@@ -143,8 +143,7 @@ def main():
                     for so_name in storage_objects_perf:
                         for perf_counter_name, perf_counter_value in zip(sc_maps[storage_concept]['cim_properties_perfomance'],
                                                                          storage_objects_perf[so_name]):
-                            trapper_key = (perf_counter_name + '['
-                                           + storage_concept + '.' + so_name + ']')
+                            trapper_key = f'{perf_counter_name}[{storage_concept}.{so_name}]'
                             trapper_value = perf_counter_value
 
                             # form list of data for sending to zabbix
