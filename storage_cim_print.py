@@ -21,7 +21,7 @@ def main():
     project = os.path.abspath(__file__).split('/')[-2]
 
     # get config file name
-    conf_file = (f'/etc/orbit/{project}/{project}.conf')
+    conf_file = (f'/etc/zabbix/externalscripts/{project}/{project}.conf')
 
     # read network device parameters from config and save it to dict
     nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file',
