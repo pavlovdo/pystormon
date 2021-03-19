@@ -8,6 +8,8 @@
 # Print CIM properties of Storwize
 #
 
+import os
+
 from configread import configread
 from json import load
 from pynetdevices import WBEMDevice
