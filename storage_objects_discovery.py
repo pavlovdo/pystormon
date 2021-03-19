@@ -133,7 +133,7 @@ def main():
                     print(trapper_value)
 
             # trying send data to zabbix
-                zabbix_send(packet, printing, software)
+            zabbix_send(packet, printing, software)
 
     device_list_file.close()
 
