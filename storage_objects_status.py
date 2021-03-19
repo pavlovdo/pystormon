@@ -10,14 +10,23 @@
 # Use with template Template Storage Pystormon
 #
 
+import os
+import sys
+
 from configread import configread
+from functions import slack_post, zabbix_send
 from json import load
 from pynetdevices import WBEMDevice
-from pyslack import slack_post
-from pyzabbix import ZabbixMetric, ZabbixSender
+from pywbem import _exceptions
+from pyzabbix import ZabbixMetric
 
 
-def storage_objects_get_params(wbem_connection, cim_class, cim_property_name, cim_properties_mon):
+# set project as current directory name, software as name of current script
+project = os.path.abspath(__file__).split('/')[-2]
+software = sys.argv[0]
+
+
+def storage_objects_get_params(wbem_connection, storage_name, cim_class, cim_property_name, cim_properties_mon):
     """ get status of disk parameters """
 
     # create empty dictionary for save storage objects parameters values
@@ -27,8 +36,19 @@ def storage_objects_get_params(wbem_connection, cim_class, cim_property_name, ci
     str_cim_properties_mon = ','.join(cim_properties_mon)
     request = f'SELECT {str_cim_properties_mon} FROM {cim_class}'
 
-    # request storage via WBEM
-    storage_response = wbem_connection.ExecQuery('DMTF:CQL', request)
+    # try to request storage via WBEM
+    try:
+        storage_response = wbem_connection.ExecQuery('DMTF:CQL', request)
+    except _exceptions.ConnectionError as error:
+        print(f'{project}_error: exception in {software}: can\'t exec query on {storage_name}: {error}',
+              file=sys.stderr)
+        slack_post(software, f'can\'t exec query on {storage_name}: {error}')
+        exit(1)
+    except:
+        print(f'{project}_error: exception in {software}: {sys.exc_info()}',
+              file=sys.stderr)
+        slack_post(software, sys.exc_info())
+        exit(1)
 
     # form dictionary of dictionaries of disk parameters
     for cim_object in storage_response:
@@ -50,20 +70,23 @@ def storage_objects_get_params(wbem_connection, cim_class, cim_property_name, ci
 
 def main():
 
-    # set config file name
-    conf_file = '/etc/zabbix/externalscripts/pystormon/conf.d/pystormon.conf'
+    # get config file name
+    conf_file = (f'/etc/orbit/{project}/{project}.conf')
 
     # read network device parameters from config and save it to dict
     nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file',
-                               'login', 'password', 'name_space',
-                               'zabbix_server', 'slack_hook')
+                               'login', 'password', 'name_space', 'printing')
 
     # read storage device parameters from config and save it to another dict
     sd_parameters = configread(conf_file, 'StorageDevice',
-                               'storage_cim_map_file', 'printing')
+                               'storage_cim_map_file')
 
     # get printing boolean variable from config for debugging enable/disable
-    printing = eval(sd_parameters['printing'])
+    printing = eval(nd_parameters['printing'])
+
+    # get variables
+    login = nd_parameters['login']
+    password = nd_parameters['password']
 
     # form dictionary of matching storage concepts and cim properties
     # more details in https://www.ibm.com/support/knowledgecenter/STHGUJ_8.3.1/com.ibm.storwize.v5000.831.doc/svc_conceptsmaptocimconcepts_3skacv.html
@@ -76,13 +99,11 @@ def main():
     # unpack storage list to variables
     for device_line in device_list_file:
         device_type, device_name, device_ip = device_line.split(':')
+        device_ip = device_ip.rstrip('\n')
 
-        # connect to storage via WBEM, get conn object
+        # connect to each storage via WBEM, get conn object
         if device_type == 'storwize':
-            device = WBEMDevice(device_name, device_ip,
-                                nd_parameters['login'],
-                                nd_parameters['password'],
-                                nd_parameters['slack_hook'])
+            device = WBEMDevice(device_name, device_ip, login, password)
             # get namespace from config, root/ibm by default
             namespace = nd_parameters.get('name_space', 'root/ibm')
             conn = device.Connect(namespace)
@@ -93,7 +114,7 @@ def main():
             # iterate through dictionary of monitored storage concepts
             for storage_concept in sc_maps:
                 # get values of object parameters for all object of each type
-                storage_objects = storage_objects_get_params(conn,
+                storage_objects = storage_objects_get_params(conn, device_name,
                                                              sc_maps[storage_concept]['cim_class'],
                                                              sc_maps[storage_concept]['cim_property_name'],
                                                              sc_maps[storage_concept]['cim_properties_mon'])
@@ -113,24 +134,13 @@ def main():
 
                         # print data for visual check
                         if printing:
+                            # print("zabbix_sender -z wcmon.forum.lo -p 10051 -s", device_name, "-k",trapper_key, "-o", trapper_value)
                             print(device_name)
                             print(trapper_key)
                             print(trapper_value)
 
             # trying send data to zabbix
-            try:
-                zabbix_send_status = ZabbixSender(
-                    nd_parameters['zabbix_server']).send(packet)
-                if printing:
-                    print('Status of sending data to zabbix:\n',
-                          zabbix_send_status)
-            except ConnectionRefusedError as error:
-                if nd_parameters['slack_hook']:
-                    slack_post(nd_parameters['slack_hook'],
-                               'Unexpected exception in \"ZabbixSender()' +
-                               '.send(packet)\": ' + str(error),
-                               nd_parameters['zabbix_server'])
-                exit(1)
+            zabbix_send(packet, printing, software)
 
     device_list_file.close()
 
