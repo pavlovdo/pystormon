@@ -88,7 +88,8 @@ def storage_objects_get_perf(wbem_connection, storage_name, cim_class, cim_prope
 def main():
 
     # get config file name
-    conf_file = (f'/etc/zabbix/externalscripts/{project}/{project}.conf')
+    conf_file = (
+        f'/etc/zabbix/externalscripts/{project}/conf.d/{project}.conf')
 
     # read network device parameters from config and save it to dict
     nd_parameters = configread(conf_file, 'NetworkDevice', 'device_file',
