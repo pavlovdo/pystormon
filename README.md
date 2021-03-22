@@ -139,7 +139,7 @@ Tested
 ======
 IBM Storwize v3700/v5010/v5030/v7000, software versions 7.6.x - 8.3.x
 
-Zabbix 4.4, 5.2
+Zabbix 5.2
 
 
 Related Links
