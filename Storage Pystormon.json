@@ -1,7 +1,7 @@
 {
     "zabbix_export": {
         "version": "5.2",
-        "date": "2021-01-15T09:09:25Z",
+        "date": "2021-03-23T14:10:36Z",
         "groups": [
             {
                 "name": "Templates/Hardware"
@@ -889,7 +889,7 @@
                                 ],
                                 "trigger_prototypes": [
                                     {
-                                        "expression": "{avg(5m)}>{$DISKDRIVE_MAX_READ_RATE_MBS}*1048576",
+                                        "expression": "{min(5m)}>{$DISKDRIVE_MAX_READ_RATE_MBS}*1048576",
                                         "name": "Read rate of {#SO_TYPE}.{#SO_NAME} exceeds {$DISKDRIVE_MAX_READ_RATE_MBS} MB/s for 5 minutes",
                                         "priority": "WARNING"
                                     }
@@ -922,7 +922,7 @@
                                 ],
                                 "trigger_prototypes": [
                                     {
-                                        "expression": "{avg(5m)}>{$DISKDRIVE_MAX_TRANSFER_RATE_MBS}*1048576",
+                                        "expression": "{min(5m)}>{$DISKDRIVE_MAX_TRANSFER_RATE_MBS}*1048576",
                                         "name": "Transfer rate of {#SO_TYPE}.{#SO_NAME} exceeds {$DISKDRIVE_MAX_TRANSFER_RATE_MBS} MB/s for 5 minutes",
                                         "priority": "WARNING"
                                     }
@@ -955,7 +955,7 @@
                                 ],
                                 "trigger_prototypes": [
                                     {
-                                        "expression": "{avg(5m)}>{$DISKDRIVE_MAX_WRITE_RATE_MBS}*1048576",
+                                        "expression": "{min(5m)}>{$DISKDRIVE_MAX_WRITE_RATE_MBS}*1048576",
                                         "name": "Write rate of {#SO_TYPE}.{#SO_NAME} exceeds {$DISKDRIVE_MAX_WRITE_RATE_MBS} MB/s for 5 minutes",
                                         "priority": "WARNING"
                                     }
@@ -3335,7 +3335,7 @@
                                 ],
                                 "trigger_prototypes": [
                                     {
-                                        "expression": "{avg(5m)}>{$VDISK_MAX_READ_RATE_MBS}*1048576",
+                                        "expression": "{min(5m)}>{$VDISK_MAX_READ_RATE_MBS}*1048576",
                                         "name": "Read rate of {#SO_TYPE}.{#SO_NAME} exceeds {$VDISK_MAX_READ_RATE_MBS} MB/s for 5 minutes",
                                         "priority": "WARNING"
                                     }
@@ -3368,7 +3368,7 @@
                                 ],
                                 "trigger_prototypes": [
                                     {
-                                        "expression": "{avg(5m)}>{$VDISK_MAX_TRANSFER_RATE_MBS}*1048576",
+                                        "expression": "{min(5m)}>{$VDISK_MAX_TRANSFER_RATE_MBS}*1048576",
                                         "name": "Transfer rate of {#SO_TYPE}.{#SO_NAME} exceeds {$VDISK_MAX_TRANSFER_RATE_MBS} MB/s for 5 minutes",
                                         "priority": "WARNING"
                                     }
@@ -3401,7 +3401,7 @@
                                 ],
                                 "trigger_prototypes": [
                                     {
-                                        "expression": "{avg(5m)}>{$VDISK_MAX_WRITE_RATE_MBS}*1048576",
+                                        "expression": "{min(5m)}>{$VDISK_MAX_WRITE_RATE_MBS}*1048576",
                                         "name": "Write rate of {#SO_TYPE}.{#SO_NAME} exceeds {$VDISK_MAX_WRITE_RATE_MBS} MB/s for 5 minutes",
                                         "priority": "WARNING"
                                     }
