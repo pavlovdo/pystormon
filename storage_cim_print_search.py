@@ -72,7 +72,7 @@ def main():
                 sc_cim_classes = conn.EnumerateClassNames(
                     namespace=nd_parameters['name_space'], DeepInheritance=True)
             except _exceptions.AuthError as error:
-                print((f'{project}_error: exception in {software}: can\'t exec query on {device_name}: {error}. '
+                print((f'{project}_error: exception in {software}: can\'t exec query on {device_name}: {error} '
                        f'Check your username/password and permissions of user.'),
                       file=sys.stderr)
                 exit(1)
@@ -94,7 +94,7 @@ def main():
                             instances = conn.EnumerateInstances(sc_cim_class,
                                                                 namespace=nd_parameters['name_space'])
                         except _exceptions.AuthError as error:
-                            print((f'{project}_error: exception in {software}: can\'t exec query on {device_name}: {error}. '
+                            print((f'{project}_error: exception in {software}: can\'t exec query on {device_name}: {error} '
                                    f'Check your username/password and permissions of user.'),
                                   file=sys.stderr)
                             exit(1)

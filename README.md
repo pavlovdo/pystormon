@@ -138,7 +138,7 @@ check that you create corresponding objects (VDisks in our example) on your stor
 6) You can print any storage CIM class and it property's names/values via script storage_cim_print_search.py. You have to set search substrings via
 script arguments, for example:
 ```
-mkdir /var/tmp/pystormon
+sudo mkdir /var/tmp/pystormon
 /etc/zabbix/externalscripts/pystormon/storage_cim_print_search.py FC iSCSI
 ```
 In result you get output of property's names and values of all storage CIM classes that contain word 'FC' and 'iSCSI' (case sensitive) to console and to file set by config parameter detected_properties_file (see pystormon.conf).

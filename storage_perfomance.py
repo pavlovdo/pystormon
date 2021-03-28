@@ -41,10 +41,19 @@ def storage_objects_get_perf(wbem_connection, storage_name, cim_class, cim_prope
     try:
         objects_names_cim = wbem_connection.ExecQuery(
             'DMTF:CQL', objects_request)
-    except _exceptions.ConnectionError as error:
-        print(f'{project}_error: exception in {software}: can\'t exec query on {storage_name}: {error}',
+    except _exceptions.AuthError as error:
+        print((f'{project}_error: exception in {software}: can\'t exec query on {storage_name}: {error} '
+               f'Check your username/password and permissions of user.'),
               file=sys.stderr)
-        slack_post(software, f'can\'t exec query on {storage_name}: {error}')
+        slack_post(software, (f'can\'t exec query on {storage_name}: {error} .'
+                              f'Check your username/password and permissions of user.'))
+        exit(1)
+    except _exceptions.ConnectionError as error:
+        print((f'{project}_error: exception in {software}: can\'t exec query on {storage_name}: {error}. '
+               f'Check the connection to storage or try later.'),
+              file=sys.stderr)
+        slack_post(software, (f'can\'t exec query on {storage_name}: {error}. '
+                              f'Check the connection to storage or try later.'))
         exit(1)
     except:
         print(f'{project}_error: exception in {software}: {sys.exc_info()}',
@@ -54,10 +63,19 @@ def storage_objects_get_perf(wbem_connection, storage_name, cim_class, cim_prope
 
     try:
         objects_perfs_cim = wbem_connection.ExecQuery('DMTF:CQL', perf_request)
-    except _exceptions.ConnectionError as error:
-        print(f'{project}_error: exception in {software}: can\'t exec query on {storage_name}: {error}',
+    except _exceptions.AuthError as error:
+        print((f'{project}_error: exception in {software}: can\'t exec query on {storage_name}: {error} '
+               f'Check your username/password and permissions of user.'),
               file=sys.stderr)
-        slack_post(software, f'can\'t exec query on {storage_name}: {error}')
+        slack_post(software, (f'can\'t exec query on {storage_name}: {error} .'
+                              f'Check your username/password and permissions of user.'))
+        exit(1)
+    except _exceptions.ConnectionError as error:
+        print((f'{project}_error: exception in {software}: can\'t exec query on {storage_name}: {error}. '
+               f'Check the connection to storage or try later.'),
+              file=sys.stderr)
+        slack_post(software, (f'can\'t exec query on {storage_name}: {error}. '
+                              f'Check the connection to storage or try later.'))
         exit(1)
     except:
         print(f'{project}_error: exception in {software}: {sys.exc_info()}',

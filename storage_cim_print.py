@@ -70,7 +70,7 @@ def main():
                     instances = conn.EnumerateInstances(storage_cim_class,
                                                         namespace=nd_parameters['name_space'])
                 except _exceptions.AuthError as error:
-                    print((f'{project}_error: exception in {software}: can\'t exec query on {device_name}: {error}. '
+                    print((f'{project}_error: exception in {software}: can\'t exec query on {device_name}: {error} '
                            f'Check your username/password and permissions of user.'),
                           file=sys.stderr)
                     exit(1)
