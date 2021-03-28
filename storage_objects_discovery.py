@@ -69,7 +69,7 @@ def main():
 
     # read storage device parameters from config and save it to another dict
     sd_parameters = configread(conf_file, 'StorageDevice',
-                               'storage_cim_map_file')
+                               'monitored_properties_file')
 
     # get printing boolean variable from config for debugging enable/disable
     printing = eval(nd_parameters['printing'])
@@ -80,8 +80,8 @@ def main():
 
     # form dictionary of matching storage concepts and cim properties
     # more details in https://www.ibm.com/support/knowledgecenter/STHGUJ_8.3.1/com.ibm.storwize.v5000.831.doc/svc_conceptsmaptocimconcepts_3skacv.html
-    with open(sd_parameters['storage_cim_map_file'], "r") as storage_cim_map_file:
-        sc_maps = load(storage_cim_map_file)
+    with open(sd_parameters['monitored_properties_file'], "r") as monitored_properties_file:
+        monitored_properties = load(monitored_properties_file)
 
     # open config file with list of monitored storages
     device_list_file = open(nd_parameters['device_file'])
@@ -102,11 +102,11 @@ def main():
             packet = []
 
             # iterate through dictionary of monitored storage concepts
-            for storage_concept in sc_maps:
+            for storage_concept in monitored_properties:
                 # get list of storage objects
                 so_names = storage_objects_discovery(conn, device_name,
-                                                     sc_maps[storage_concept]['cim_class'],
-                                                     sc_maps[storage_concept]['cim_property_name'])
+                                                     monitored_properties[storage_concept]['cim_class'],
+                                                     monitored_properties[storage_concept]['cim_property_name'])
 
                 so_names_dict = {}
                 so_names_list = []
@@ -120,7 +120,7 @@ def main():
                 # form data for send to zabbix
                 so_names_dict['data'] = so_names_list
 
-                trapper_key = sc_maps[storage_concept]['zabbix_discovery_key']
+                trapper_key = monitored_properties[storage_concept]['zabbix_discovery_key']
                 trapper_value = str(so_names_dict).replace("\'", "\"")
 
                 # form packet for sending to zabbix

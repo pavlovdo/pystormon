@@ -73,10 +73,10 @@ zabbix    776392  0.2  0.4 2049600 112064 ?      S    дек07  63:57 /usr/sbin/
 zabbix    776393  0.2  0.4 2049412 111836 ?      S    дек07  63:31 /usr/sbin/zabbix_server: trapper #5 [processed data in 0.000176 sec, waiting for connection]
 ```
 
-9) Import template Storage Pystormon.xml or Storage Pystormon.json to Zabbix, if use Zabbix 5.2,
+9) Import template Storage Pystormon.json to Zabbix, if use Zabbix 5.2,
 and Storage Pystormon 4.4.xml (no more support) for Zabbix 4.4;
 
-10) Create your storage hosts in Zabbix and link template Storage Pystormon to them.
+10) Create your storage hosts in Zabbix and link template Storage Pystormon to it.
 In host configuration set parameters "Host name" and "IP address" for Agent Interface.
 Use the same hostname as in the file devices.conf, storwize.example.com for example.
 
@@ -93,9 +93,9 @@ pip3 install -r requirements.txt
 
 C) Create cron jobs for zabbix trappers:
 ```
-echo "00 */1 * * *  /etc/zabbix/externalscripts/pystormon/storage_objects_discovery.py" > /tmp/crontab && \
-echo "*/5 * * * *   /etc/zabbix/externalscripts/pystormon/storage_objects_status.py" >> /tmp/crontab && \
-echo "*/1 * * * *   /etc/zabbix/externalscripts/pystormon/storage_perfomance.py" >> /tmp/crontab && \
+echo "00 */1 * * *  /etc/zabbix/externalscripts/pystormon/storage_objects_discovery.py 1> /dev/null" > /tmp/crontab && \
+echo "*/5 * * * *   /etc/zabbix/externalscripts/pystormon/storage_objects_status.py 1> /dev/null" >> /tmp/crontab && \
+echo "*/1 * * * *   /etc/zabbix/externalscripts/pystormon/storage_perfomance.py 1> /dev/null" >> /tmp/crontab && \
 crontab /tmp/crontab && rm /tmp/crontab
 ```
 
@@ -115,7 +115,7 @@ B) Run dockerrun.sh;
 
 Notes
 ======
-1) You can add or remove monitoring of your storage cim classes and properties in file storage_cim_map.json
+1) You can add or remove monitoring of your storage cim classes and properties in file monitored_properties.json
 and in template Storage Pystormon. Storage CIM classes maps to Zabbix discoveries, and CIM class properties maps
 to Zabbix discoveries items.
 
@@ -127,12 +127,22 @@ to Zabbix discoveries items.
 More details in https://api.slack.com/messaging/webhooks
 
 
-4) You can print all names/values from storage CIM classes, via script storage_cim_map.json. It get CIM classes from 
-storage_cim_map.json and print all names/values for its.
+4) You can print all names/values from storage CIM classes, via script storage_cim_print.py. It get CIM classes from 
+monitored_properties.json and print all names/values for its.
 
 
 5) If you start storage_cim_print.py and get empty values for some classes, for example classes IBMTSSVC_StorageVolume, IBMTSSVC_StorageVolumeStatistics, 
 check that you create corresponding objects (VDisks in our example) on your storage;
+
+
+6) You can print any storage CIM class and it property's names/values via script storage_cim_print_search.py. You have to set search substrings via
+script arguments, for example:
+```
+mkdir /var/tmp/pystormon
+/etc/zabbix/externalscripts/pystormon/storage_cim_print_search.py FC iSCSI
+```
+In result you get output of property's names and values of all storage CIM classes that contain word 'FC' and 'iSCSI' (case sensitive) to console and to file set by config parameter detected_properties_file (see pystormon.conf).
+
 
 
 Tested
