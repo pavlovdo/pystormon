@@ -157,7 +157,7 @@ In result you get output of property's names and values of all storage CIM class
 
 Tested
 ======
-IBM Storwize v3700/v5010/v5030/v7000, software versions 7.6.x - 8.3.x
+IBM Storwize v3700/v5010/v5030/v7000, software versions 7.8.x - 8.3.x
 
 Zabbix 5.2
 

@@ -7,6 +7,6 @@ readonly DATA_DIR=/var/tmp/$PROJECT
 message="\nRunning of container from image $PROJECT with name $PROJECT and mounting $CONFIG_DIR':'$CONFIG_DIR':ro
 and $DATA_DIR:$DATA_DIR"
 
-docker run --detach --tty --name "$PROJECT" --restart=always --volume "$CONFIG_DIR":"$CONFIG_DIR":ro "$PROJECT" \
---volume "$DATA_DIR":"$DATA_DIR"
+docker run --detach --tty --name "$PROJECT" --restart=always --volume "$CONFIG_DIR":"$CONFIG_DIR":ro \
+--volume "$DATA_DIR":"$DATA_DIR" "$PROJECT"
 echo -e "${message}"
