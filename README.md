@@ -131,15 +131,15 @@ and in template Storage Pystormon. Storage CIM classes maps to Zabbix discoverie
 to Zabbix discoveries items.
 
 
-2) You can change perfomance macros values in template Storape Pystormon (for Zabbix 5.2 templates);
+2) You can change perfomance macros values in template Storage Pystormon (for Zabbix 5.2 templates);
 
 
 3) For send exception alarms via slack hook to your slack channel, set parameter slack_hook in conf.d/pystormon.conf.
 More details in https://api.slack.com/messaging/webhooks
 
 
-4) You can print all names/values from storage CIM classes, via script storage_cim_print.py. It get CIM classes from 
-monitored_properties.json and print all names/values for its.
+4) You can print all names/values from those storage CIM classes that exist in monitored_properties.json, via script storage_cim_print.py.
+It get CIM classes from monitored_properties.json and print all names/values for its.
 
 
 5) If you start storage_cim_print.py and get empty values for some classes, for example classes IBMTSSVC_StorageVolume, IBMTSSVC_StorageVolumeStatistics, 

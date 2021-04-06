@@ -1,7 +1,7 @@
 {
     "zabbix_export": {
         "version": "5.2",
-        "date": "2021-03-23T14:10:36Z",
+        "date": "2021-04-06T10:22:07Z",
         "groups": [
             {
                 "name": "Templates/Hardware"
@@ -60,33 +60,45 @@
                                 "type": "TRAP",
                                 "key": "Access[Array.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The access levels that specifies if the media is readable.",
                                 "applications": [
                                     {
                                         "name": "Arrays Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Access"
+                                }
                             },
                             {
                                 "name": "AdditionalAvailability 0 of {#SO_TYPE}.{#SO_NAME}",
                                 "type": "TRAP",
                                 "key": "AdditionalAvailability.0[Array.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The availability and status of the device in addition to what is specified in the Availability property. The Availability property denotes the primary status and availability of the device. In cases where this is not sufficient to denote the complete status of the device, the AdditionalAvailability property provides further information.",
                                 "applications": [
                                     {
                                         "name": "Arrays Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Additional Availability"
+                                }
                             },
                             {
                                 "name": "AdditionalAvailability 1 of {#SO_TYPE}.{#SO_NAME}",
                                 "type": "TRAP",
                                 "key": "AdditionalAvailability.1[Array.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The availability and status of the device in addition to what is specified in the Availability property. The Availability property denotes the primary status and availability of the device. In cases where this is not sufficient to denote the complete status of the device, the AdditionalAvailability property provides further information.",
                                 "applications": [
                                     {
                                         "name": "Arrays Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Additional Availability"
+                                }
                             },
                             {
                                 "name": "AllocatedCapacity of {#SO_TYPE}.{#SO_NAME}",
@@ -106,6 +118,7 @@
                                 "key": "BlockSize[Array.{#SO_NAME}]",
                                 "delay": "0",
                                 "units": "B",
+                                "description": "The size (in bytes) of the blocks that form this storage extent. If the block size is variable, the maximum block size must be specified. If the block size\nis unknown or if a block concept is not valid, enter a 1.",
                                 "applications": [
                                     {
                                         "name": "Arrays Status"
@@ -137,6 +150,7 @@
                                 "type": "TRAP",
                                 "key": "ConsumableBlocks[Array.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The maximum number of blocks that are available for consumption when layering StorageExtents using the BasedOn association. This property only has meaning when this StorageExtent is an Antecedent reference in a BasedOn relationship.",
                                 "applications": [
                                     {
                                         "name": "Arrays Status"
@@ -152,13 +166,17 @@
                                     {
                                         "name": "Arrays Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Data Organization"
+                                }
                             },
                             {
                                 "name": "DataRedundancy of {#SO_TYPE}.{#SO_NAME}",
                                 "type": "TRAP",
                                 "key": "DataRedundancy[Array.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The number of complete copies of data that is currently maintained.",
                                 "applications": [
                                     {
                                         "name": "Arrays Status"
@@ -189,6 +207,7 @@
                                 "type": "TRAP",
                                 "key": "DeltaReservation[Array.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The current value for Delta reservation. This is a percentage that specifies the amount of space that you want to reserve in a replica to save changes in the cache.",
                                 "applications": [
                                     {
                                         "name": "Arrays Status"
@@ -250,11 +269,15 @@
                                 "type": "TRAP",
                                 "key": "EnabledState[Array.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "An integer enumeration that indicates the enabled and disabled states of an element. This property can also indicate the transitions between these requested\nstates. For example, the values shutting down (4) and starting (10) are transient states between enabled and disabled.",
                                 "applications": [
                                     {
                                         "name": "Arrays Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Enabled State"
+                                }
                             },
                             {
                                 "name": "Encrypt of {#SO_TYPE}.{#SO_NAME}",
@@ -355,7 +378,10 @@
                                     {
                                         "name": "Arrays Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Mode"
+                                }
                             },
                             {
                                 "name": "NativeStatus of {#SO_TYPE}.{#SO_NAME}",
@@ -550,6 +576,16 @@
                                     {
                                         "name": "Arrays Status"
                                     }
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon RAID Status"
+                                },
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{last()}<>5",
+                                        "name": "RAID Status of {#SO_TYPE}.{#SO_NAME} is not online",
+                                        "priority": "AVERAGE"
+                                    }
                                 ]
                             },
                             {
@@ -557,6 +593,7 @@
                                 "type": "TRAP",
                                 "key": "Redundancy[{#SO_TYPE}.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "Indicates the number of member disks that can fail concurrently without causing the array to fail.",
                                 "applications": [
                                     {
                                         "name": "Arrays Status"
@@ -1907,33 +1944,45 @@
                                 "type": "TRAP",
                                 "key": "Access[mdisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The access levels that specifies if the media is readable.",
                                 "applications": [
                                     {
                                         "name": "Mdisks Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Access"
+                                }
                             },
                             {
                                 "name": "AdditionalAvailability 0 of {#SO_TYPE}.{#SO_NAME}",
                                 "type": "TRAP",
                                 "key": "AdditionalAvailability.0[mdisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The availability and status of the device in addition to what is specified in the Availability property. The Availability property denotes the primary status and availability of the device. In cases where this is not sufficient to denote the complete status of the device, the AdditionalAvailability property provides further information.",
                                 "applications": [
                                     {
                                         "name": "Mdisks Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Additional Availability"
+                                }
                             },
                             {
                                 "name": "AdditionalAvailability 1 of {#SO_TYPE}.{#SO_NAME}",
                                 "type": "TRAP",
                                 "key": "AdditionalAvailability.1[mdisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The availability and status of the device in addition to what is specified in the Availability property. The Availability property denotes the primary status and availability of the device. In cases where this is not sufficient to denote the complete status of the device, the AdditionalAvailability property provides further information.",
                                 "applications": [
                                     {
                                         "name": "Mdisks Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Additional Availability"
+                                }
                             },
                             {
                                 "name": "Block Size of {#SO_TYPE}.{#SO_NAME}",
@@ -1941,6 +1990,7 @@
                                 "key": "BlockSize[mdisk.{#SO_NAME}]",
                                 "delay": "0",
                                 "units": "B",
+                                "description": "The size (in bytes) of the blocks that form this storage extent. If the block size is variable, the maximum block size must be specified. If the block size\nis unknown or if a block concept is not valid, enter a 1.",
                                 "applications": [
                                     {
                                         "name": "Mdisks Status"
@@ -1972,6 +2022,7 @@
                                 "type": "TRAP",
                                 "key": "ConsumableBlocks[mdisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The maximum number of blocks that are available for consumption when layering StorageExtents using the BasedOn association. This property only has meaning when this StorageExtent is an Antecedent reference in a BasedOn relationship.",
                                 "applications": [
                                     {
                                         "name": "Mdisks Status"
@@ -2009,13 +2060,17 @@
                                     {
                                         "name": "Mdisks Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Data Organization"
+                                }
                             },
                             {
                                 "name": "DataRedundancy of {#SO_TYPE}.{#SO_NAME}",
                                 "type": "TRAP",
                                 "key": "DataRedundancy[mdisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The number of complete copies of data that is currently maintained.",
                                 "applications": [
                                     {
                                         "name": "Mdisks Status"
@@ -2027,6 +2082,7 @@
                                 "type": "TRAP",
                                 "key": "DeltaReservation[mdisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The current value for Delta reservation. This is a percentage that specifies the amount of space that you want to reserve in a replica to save changes in the cache.",
                                 "applications": [
                                     {
                                         "name": "Mdisks Status"
@@ -2080,11 +2136,15 @@
                                 "type": "TRAP",
                                 "key": "EnabledState[mdisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "An integer enumeration that indicates the enabled and disabled states of an element. This property can also indicate the transitions between these requested\nstates. For example, the values shutting down (4) and starting (10) are transient states between enabled and disabled.",
                                 "applications": [
                                     {
                                         "name": "Mdisks Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Enabled State"
+                                }
                             },
                             {
                                 "name": "ExtentStatus 0 of {#SO_TYPE}.{#SO_NAME}",
@@ -2136,7 +2196,10 @@
                                     {
                                         "name": "Mdisks Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Mode"
+                                }
                             },
                             {
                                 "name": "NativeStatus of {#SO_TYPE}.{#SO_NAME}",
@@ -2984,11 +3047,15 @@
                                 "type": "TRAP",
                                 "key": "Access[VDisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The access levels that specifies if the media is readable.",
                                 "applications": [
                                     {
                                         "name": "VDisks Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Access"
+                                }
                             },
                             {
                                 "name": "Block Size of {#SO_TYPE}.{#SO_NAME}",
@@ -2996,6 +3063,7 @@
                                 "key": "BlockSize[VDisk.{#SO_NAME}]",
                                 "delay": "0",
                                 "units": "B",
+                                "description": "The size (in bytes) of the blocks that form this storage extent. If the block size is variable, the maximum block size must be specified. If the block size\nis unknown or if a block concept is not valid, enter a 1.",
                                 "applications": [
                                     {
                                         "name": "VDisks Status"
@@ -3050,6 +3118,7 @@
                                 "type": "TRAP",
                                 "key": "ConsumableBlocks[VDisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The maximum number of blocks that are available for consumption when layering StorageExtents using the BasedOn association. This property only has meaning when this StorageExtent is an Antecedent reference in a BasedOn relationship.",
                                 "applications": [
                                     {
                                         "name": "VDisks Status"
@@ -3095,13 +3164,17 @@
                                     {
                                         "name": "VDisks Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Data Organization"
+                                }
                             },
                             {
                                 "name": "DataRedundancy of {#SO_TYPE}.{#SO_NAME}",
                                 "type": "TRAP",
                                 "key": "DataRedundancy[VDisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The number of complete copies of data that is currently maintained.",
                                 "applications": [
                                     {
                                         "name": "VDisks Status"
@@ -3113,6 +3186,7 @@
                                 "type": "TRAP",
                                 "key": "DeltaReservation[VDisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "The current value for Delta reservation. This is a percentage that specifies the amount of space that you want to reserve in a replica to save changes in the cache.",
                                 "applications": [
                                     {
                                         "name": "VDisks Status"
@@ -3166,11 +3240,15 @@
                                 "type": "TRAP",
                                 "key": "EnabledState[VDisk.{#SO_NAME}]",
                                 "delay": "0",
+                                "description": "An integer enumeration that indicates the enabled and disabled states of an element. This property can also indicate the transitions between these requested\nstates. For example, the values shutting down (4) and starting (10) are transient states between enabled and disabled.",
                                 "applications": [
                                     {
                                         "name": "VDisks Status"
                                     }
-                                ]
+                                ],
+                                "valuemap": {
+                                    "name": "Pystormon Enabled State"
+                                }
                             },
                             {
                                 "name": "ExtentStatus 0 of {#SO_TYPE}.{#SO_NAME}",
@@ -3872,6 +3950,82 @@
                                     }
                                 ]
                             }
+                        ],
+                        "graph_prototypes": [
+                            {
+                                "name": "IOPS of {#SO_TYPE}.{#SO_NAME}",
+                                "graph_items": [
+                                    {
+                                        "sortorder": "1",
+                                        "color": "199C0D",
+                                        "item": {
+                                            "host": "Storage Pystormon",
+                                            "key": "ReadHitIOs[VDisk.{#SO_NAME}]"
+                                        }
+                                    },
+                                    {
+                                        "sortorder": "2",
+                                        "color": "F63100",
+                                        "item": {
+                                            "host": "Storage Pystormon",
+                                            "key": "ReadIOs[VDisk.{#SO_NAME}]"
+                                        }
+                                    },
+                                    {
+                                        "sortorder": "3",
+                                        "color": "2774A4",
+                                        "item": {
+                                            "host": "Storage Pystormon",
+                                            "key": "TotalIOs[VDisk.{#SO_NAME}]"
+                                        }
+                                    },
+                                    {
+                                        "sortorder": "4",
+                                        "color": "F7941D",
+                                        "item": {
+                                            "host": "Storage Pystormon",
+                                            "key": "WriteHitIOs[VDisk.{#SO_NAME}]"
+                                        }
+                                    },
+                                    {
+                                        "sortorder": "5",
+                                        "color": "FC6EA3",
+                                        "item": {
+                                            "host": "Storage Pystormon",
+                                            "key": "WriteIOs[VDisk.{#SO_NAME}]"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Rate of {#SO_TYPE}.{#SO_NAME}",
+                                "graph_items": [
+                                    {
+                                        "sortorder": "1",
+                                        "color": "199C0D",
+                                        "item": {
+                                            "host": "Storage Pystormon",
+                                            "key": "KBytesRead[VDisk.{#SO_NAME}]"
+                                        }
+                                    },
+                                    {
+                                        "sortorder": "2",
+                                        "color": "F63100",
+                                        "item": {
+                                            "host": "Storage Pystormon",
+                                            "key": "KBytesTransferred[VDisk.{#SO_NAME}]"
+                                        }
+                                    },
+                                    {
+                                        "sortorder": "3",
+                                        "color": "2774A4",
+                                        "item": {
+                                            "host": "Storage Pystormon",
+                                            "key": "KBytesWritten[VDisk.{#SO_NAME}]"
+                                        }
+                                    }
+                                ]
+                            }
                         ]
                     }
                 ],
@@ -3905,6 +4059,141 @@
         ],
         "value_maps": [
             {
+                "name": "Pystormon Access",
+                "mappings": [
+                    {
+                        "value": "0",
+                        "newvalue": "Unknown"
+                    },
+                    {
+                        "value": "1",
+                        "newvalue": "Readable"
+                    },
+                    {
+                        "value": "2",
+                        "newvalue": "Writeable"
+                    },
+                    {
+                        "value": "3",
+                        "newvalue": "Read/Write Supported"
+                    },
+                    {
+                        "value": "4",
+                        "newvalue": "Write Once"
+                    }
+                ]
+            },
+            {
+                "name": "Pystormon Additional Availability",
+                "mappings": [
+                    {
+                        "value": "1",
+                        "newvalue": "Other"
+                    },
+                    {
+                        "value": "2",
+                        "newvalue": "Unknown"
+                    },
+                    {
+                        "value": "3",
+                        "newvalue": "Running/Full Power"
+                    },
+                    {
+                        "value": "4",
+                        "newvalue": "Warning"
+                    },
+                    {
+                        "value": "5",
+                        "newvalue": "Not Applicable"
+                    },
+                    {
+                        "value": "6",
+                        "newvalue": "Power Off"
+                    },
+                    {
+                        "value": "8",
+                        "newvalue": "Offline"
+                    },
+                    {
+                        "value": "9",
+                        "newvalue": "Off Duty"
+                    },
+                    {
+                        "value": "10",
+                        "newvalue": "Degraded"
+                    },
+                    {
+                        "value": "11",
+                        "newvalue": "Not Installed"
+                    },
+                    {
+                        "value": "12",
+                        "newvalue": "Install Error"
+                    },
+                    {
+                        "value": "13",
+                        "newvalue": "Power Save - Unknown"
+                    },
+                    {
+                        "value": "14",
+                        "newvalue": "Power Save - Low Power Mode"
+                    },
+                    {
+                        "value": "15",
+                        "newvalue": "Power Save - Standby"
+                    },
+                    {
+                        "value": "16",
+                        "newvalue": "Power Cycle"
+                    },
+                    {
+                        "value": "17",
+                        "newvalue": "Power Save - Warning"
+                    },
+                    {
+                        "value": "18",
+                        "newvalue": "Paused"
+                    },
+                    {
+                        "value": "19",
+                        "newvalue": "Not Ready"
+                    },
+                    {
+                        "value": "20",
+                        "newvalue": "Not Configured"
+                    },
+                    {
+                        "value": "21",
+                        "newvalue": "Quiesced"
+                    }
+                ]
+            },
+            {
+                "name": "Pystormon Data Organization",
+                "mappings": [
+                    {
+                        "value": "0",
+                        "newvalue": "Other"
+                    },
+                    {
+                        "value": "1",
+                        "newvalue": "Unknown"
+                    },
+                    {
+                        "value": "2",
+                        "newvalue": "Fixed Block"
+                    },
+                    {
+                        "value": "3",
+                        "newvalue": "Variable Block"
+                    },
+                    {
+                        "value": "4",
+                        "newvalue": "Count Key Data"
+                    }
+                ]
+            },
+            {
                 "name": "Pystormon Disk Drive Use",
                 "mappings": [
                     {
@@ -3914,6 +4203,105 @@
                     {
                         "value": "4",
                         "newvalue": "Member"
+                    }
+                ]
+            },
+            {
+                "name": "Pystormon Enabled State",
+                "mappings": [
+                    {
+                        "value": "0",
+                        "newvalue": "Unknown"
+                    },
+                    {
+                        "value": "1",
+                        "newvalue": "Other"
+                    },
+                    {
+                        "value": "2",
+                        "newvalue": "Enabled"
+                    },
+                    {
+                        "value": "3",
+                        "newvalue": "Disabled"
+                    },
+                    {
+                        "value": "4",
+                        "newvalue": "Shutting Down"
+                    },
+                    {
+                        "value": "5",
+                        "newvalue": "Not Applicable"
+                    },
+                    {
+                        "value": "6",
+                        "newvalue": "Enabled but Offline"
+                    },
+                    {
+                        "value": "7",
+                        "newvalue": "In Test"
+                    },
+                    {
+                        "value": "8",
+                        "newvalue": "Deferred"
+                    },
+                    {
+                        "value": "9",
+                        "newvalue": "Quiesce"
+                    },
+                    {
+                        "value": "10",
+                        "newvalue": "Starting"
+                    }
+                ]
+            },
+            {
+                "name": "Pystormon Mode",
+                "mappings": [
+                    {
+                        "value": "1",
+                        "newvalue": "Unmanaged"
+                    },
+                    {
+                        "value": "2",
+                        "newvalue": "Managed"
+                    },
+                    {
+                        "value": "3",
+                        "newvalue": "Image"
+                    },
+                    {
+                        "value": "4",
+                        "newvalue": "Array"
+                    }
+                ]
+            },
+            {
+                "name": "Pystormon RAID Status",
+                "mappings": [
+                    {
+                        "value": "1",
+                        "newvalue": "Offline"
+                    },
+                    {
+                        "value": "2",
+                        "newvalue": "Degraded"
+                    },
+                    {
+                        "value": "3",
+                        "newvalue": "Syncing"
+                    },
+                    {
+                        "value": "4",
+                        "newvalue": "Initializing"
+                    },
+                    {
+                        "value": "5",
+                        "newvalue": "Online"
+                    },
+                    {
+                        "value": "6",
+                        "newvalue": "Expanding"
                     }
                 ]
             }
