@@ -45,9 +45,9 @@ B) If not:
 sudo chmod +x *.py *.sh
 ```
 
-5) Change example configuration file pystormon.conf: login, password, address of zabbix_server;
+5) Change example configuration files pystormon.conf: storages login/password, address of zabbix_server;
 
-6) Change example configuration file devices.conf: IP and names of storages;
+6) Change example configuration files devices.conf: IP and hostnames of storages;
 
 7) Give and check network access from monitoring server to storage management network CIM/WBEM port (TCP/5989);
 
