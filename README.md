@@ -146,8 +146,15 @@ And now you set search substrings via script arguments, for example:
 /etc/zabbix/externalscripts/pystormon/storage_cim_print_search.py FC iSCSI
 ```
 
-In result you get output of property's names and values of all storage CIM classes that contain word 'FC' and 'iSCSI' (case sensitive) to console and to file set by config parameter detected_properties_file (see pystormon.conf).
-
+In result you get output of property's names and values of all storage CIM classes that contain word 'FC' and 'iSCSI' (case sensitive) to console and to file set by config parameter detected_properties_file (see pystormon.conf):
+```
+cat /var/tmp/pystormon/detected_properties.txt
+Device: storwize.example.com CIM class: IBMTSSVC_iSCSICapabilities
+Property: Caption, Value: None
+ 
+Device: storwize1.example.com, CIM class: IBMTSSVC_iSCSICapabilities
+Property: Description, Value: None
+```
 
 
 Tested
