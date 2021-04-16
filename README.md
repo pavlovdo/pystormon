@@ -154,6 +154,7 @@ Property: Caption, Value: None
  
 Device: storwize1.example.com, CIM class: IBMTSSVC_iSCSICapabilities
 Property: Description, Value: None
+...
 ```
 
 
