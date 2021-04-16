@@ -99,11 +99,6 @@ echo "*/1 * * * *   /etc/zabbix/externalscripts/pystormon/storage_perfomance.py 
 crontab /tmp/crontab && rm /tmp/crontab
 ```
 
-D) Create directory with your username permissions for detected_properties_file:
-```
-sudo mkdir /var/tmp/pystormon && sudo chown username /var/tmp/pystormon
-```
-
 
 If you want to run scripts from docker container:
 
@@ -116,11 +111,6 @@ cd /etc/zabbix/externalscripts/pystormon
 B) Run dockerrun.sh;
 ```
 ./dockerrun.sh
-```
-
-C) Create directory with your username permissions for detected_properties_file:
-```
-sudo mkdir /var/tmp/pystormon && sudo chown username /var/tmp/pystormon
 ```
 
 
@@ -146,11 +136,16 @@ It get CIM classes from monitored_properties.json and print all names/values for
 check that you create corresponding objects (VDisks in our example) on your storage;
 
 
-6) You can print any storage CIM class and it property's names/values via script storage_cim_print_search.py. You have to set search substrings via
-script arguments, for example:
+6) You can print any storage CIM class and it property's names/values via script storage_cim_print_search.py. For that you have to create directory with your username permissions for detected_properties_file:
+```
+sudo mkdir /var/tmp/pystormon && sudo chown username /var/tmp/pystormon
+```
+
+And now you set search substrings via script arguments, for example:
 ```
 /etc/zabbix/externalscripts/pystormon/storage_cim_print_search.py FC iSCSI
 ```
+
 In result you get output of property's names and values of all storage CIM classes that contain word 'FC' and 'iSCSI' (case sensitive) to console and to file set by config parameter detected_properties_file (see pystormon.conf).
 
 
