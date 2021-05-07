@@ -58,7 +58,7 @@ def storage_objects_get_params(wbem_connection, storage_name, cim_class, cim_pro
                f'Check the your request.'),
               file=sys.stderr)
         slack_post(software, (f'WBEM server return code 400 (Bad Request) on {storage_name}: {error}. '
-                              f'Check the your request.'))
+                              f'Check the your request {request}.'))
         exit(1)
     except:
         print(f'{project}_error: exception in {software}: {sys.exc_info()}',
