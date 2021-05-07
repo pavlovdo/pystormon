@@ -77,6 +77,13 @@ def storage_objects_get_perf(wbem_connection, storage_name, cim_class, cim_prope
         slack_post(software, (f'can\'t exec query on {storage_name}: {error}. '
                               f'Check the connection to storage or try later.'))
         exit(1)
+    except _exceptions.HTTPError as error:
+        print((f'{project}_error: exception in {software}: WBEM server return code 400 (Bad Request) on {storage_name}: {error}. '
+               f'Check the your request.'),
+              file=sys.stderr)
+        slack_post(software, (f'WBEM server return code 400 (Bad Request) on {storage_name}: {error}. '
+                              f'Check the your request.'))
+        exit(1)
     except:
         print(f'{project}_error: exception in {software}: {sys.exc_info()}',
               file=sys.stderr)

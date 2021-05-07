@@ -79,6 +79,11 @@ def main():
                            f'Check the connection to storage or try later.'),
                           file=sys.stderr)
                     exit(1)
+                except _exceptions.HTTPError as error:
+                    print((f'{project}_error: exception in {software}: WBEM server return code 400 (Bad Request) on {device_name}: {error}. '
+                           f'Check the your request.'),
+                          file=sys.stderr)
+                    exit(1)
                 except:
                     print(f'{project}_error: exception in {software}: {sys.exc_info()}',
                           file=sys.stderr)
